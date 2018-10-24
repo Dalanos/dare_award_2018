@@ -31,8 +31,8 @@ function ErrorMessage(props){
 
   return(
       <Message negative>
-        <Message.Header>Authentication failed</Message.Header>
-        <p>Your e-mail address is unknown or you password is incorrect</p>
+        <Message.Header>Error dans le login ou le mot de passe</Message.Header>
+        <p>Un indice: le login c'est "jury_dare_award" et le mdp c'est "votez_pour_nous"</p>
       </Message>
   );
 }
@@ -64,7 +64,7 @@ class FormAuthentication extends Component {
               fluid
               icon='user'
               iconPosition='left'
-              placeholder='E-mail address'
+              placeholder='Username'
               name='email'
               value={email}
               onChange={this.handleChange}
@@ -108,46 +108,22 @@ class LoginPage extends Component {
 
 
   handleFormAuthenticationSubmit(email, password) {
+    if(email === "jury_dare_award" && password === "votez_pour_nous") {
+      const { cookies } = this.state.cookies;
+      const d = new Date();
+      d.setTime(d.getTime() + (constants.ONE_DAY));
+      cookies.set('logged_in', 0, {expires : d});
+      cookies.set('parcours_jury', constants.LOGIN_VALIDE ,{expires : d})
 
-    axios.get("http://localhost:3001/users/")
-      .then(res => {
-        let user_found= false;
-        let i = 0
-        while (!user_found && i < res.data.number_of_users) {
-          // console.log(email + " " + res.data.user_list[i].email)
-          // console.log(password + " " + res.data.user_list[i].password)
-          user_found = email === res.data.user_list[i].email &&
-            password === res.data.user_list[i].password;
-          i++;
-        }
-        if(user_found) {
-          i--;
-          const { cookies } = this.state.cookies;
-          const d = new Date();
-          d.setTime(d.getTime() + (constants.ONE_HOUR));
-          cookies.set('logged_in', res.data.user_list[i].id, {expires : d});
-
-          const user_info = {
-            id: res.data.user_list[i].id,
-            first_name: res.data.user_list[i].first_name,
-            last_name: res.data.user_list[i].last_name,
-            accreditation_level: res.data.user_list[i].accreditation_level,
-            photo: res.data.user_list[i].photo,
-          }
-          cookies.set('user_info', user_info ,{expires : d})
-          
-          this.setState ({
-            successful_login: true,
-          });
-        } else {
-          this.setState({
-            error: true,
-            successful_login: false,
-          });
-        }
-
-
-    });
+      this.setState ({
+        successful_login: true,
+      });
+    } else {
+      this.setState({
+        error: true,
+        successful_login: false,
+      });
+    }
   }
 
   render() {

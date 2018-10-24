@@ -4,3 +4,7 @@ export const ONE_DAY = 86400000;
 export const ONE_HOUR = 3600000;
 export const ONE_MINUTE = 60000;
 export const IMAGE_BRAINSTORMING = "./structural/rsz_brainstorming_sombre.jpg";
+
+
+export const LOGIN_VALIDE = 1;
+export const MODALE_VALIDE = 2;
