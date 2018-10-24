@@ -92,23 +92,44 @@ export const consultation_list_data =
   }
 ];
 
+export const authors_list = [
+  {
+    id: 0,
+    first_name: "Sami",
+    last_name: "Yacoubi",
+    entity_name: "",
+    email: "sami.yacoubi@hotmail.fr",
+    password: "sami",
+    photo : "./profile_pic/sami.jpg",
+  },
+  {
+    id: 1,
+    first_name: "margot",
+    last_name: "Boulet-Maurel",
+    entity_name: "",
+    email: "sami.yacoubi@hotmail.fr",
+    password: "sami",
+    photo : "./profile_pic/margot.jpg",
+  },
+]
+
 export const consultation_detail_list_data = [
   {
     consultation_name: "Présentation",
     consultation_pitch_sentence: "Première partie du projet",
     consultation_description: "C'est dans ce texte que va apparaite notre description<br/>Vision<br/>Constat<br/>Solution en une phrase<br/>Explication du fonctionnement<br/><br/><br/><br/><br/><br/><br/>C'est fou quand même!",
-    consultation_organisator_id: 2,
+    consultation_organisator_id: 0,
     days_left: 1,
     popularity: 9000,
     detail_image: "./profile_pic.jpg",
   },
 ]
 
-
+export const consultation_id_0_opinions_number=1;
 export const consultation_id_0_opinions_details = [
   {
     id: 0,
-    id_author: 4,
+    id_author: 0,
     title: "L'offre / La solution",
     content: "m ligula id sapien commodo sodales sit amet ac est.<br/>Phasellus ac odio mi. Nam id pulvinar tortor. Nulla aliquet nisi id lorem rhoncus, at convallis lectus malesuada. Nam fermentum ante id dolor volutpat, vitae consequat ligula sagittis. Donec magna mi, sodales vitae enim quis, sagittis tincidunt enim. Maecenas porttitor dignissim lacus, eget pharetra tellus bibendum sed. Nulla mauris diam, lobortis sit amet feugiat quis, hendrerit vel est. In facilisis arcu ut accumsan mattis. Curabitur eu elit eu quam varius fringilla. Mauris iaculis lorem nec nibh sollicitudin vulputate. Donec tincidunt varius erat nec consectetur. Vestibulum dignissim at velit rutrum fermentum. Proin suscipit ornare elit, eu feugiat nisl facilisis eu. Nullam a malesuada lacus. Pellentesque ante augue, ullamcorper sit amet nunc eget, congue scelerisque est. Phasellus in dapibus tortor, sit amet hendrerit sapien.<br/>Duis porttitor nisl tortor, eget laoreet orci accumsan eu. Nulla pretium nunc eget efficitu",
     post_date: "2018-08-01T10:20:30Z",

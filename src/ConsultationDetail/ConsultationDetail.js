@@ -26,6 +26,7 @@ import Body from "./../GenericElements/Body"
 import TopPanel from "./../GenericElements/TopPanel"
 
 import * as data from '../data';
+import * as constants from '../CONSTANTS';
 
 import "./ConsultationDetail.css"
 
@@ -69,22 +70,42 @@ const DescriptionView = props => {
 };
 
 const NavigationBar = props => {
+    var style = {
+      border: 'red',
+      borderStyle: 'solid',
+      borderWidth: 'thick',
+    };
+    var render = [];
+
+    if(props.parcours_jury === 3){
+      render.push(
+        <Menu.Item
+          name='Vote'
+          active={props.active === 'Vote'}
+        />
+      );
+    } else {
+      render.push(
+        <Menu.Item
+          name='Vote'
+          active={props.active === 'Vote'}
+          onClick={() => props.onClick("Vote")}
+        />
+      );
+    }
+
     return (
       <Menu pointing secondary >
         <Menu.Item
           name='Description'
           active={props.active === 'Description'}
           onClick={() => props.onClick("Description")} />
-        <Menu.Item
+        <Menu.Item style={props.parcours_jury === 3 ? style : {}}
           name='Opinions'
           active={props.active === 'Opinions'}
           onClick={() => props.onClick("Opinions")}
         />
-        <Menu.Item
-          name='Vote'
-          active={props.active === 'Vote'}
-          onClick={() => props.onClick("Vote")}
-        />
+        {render}
       </Menu>
     );
 };
@@ -214,30 +235,17 @@ class OpinionView extends React.Component {
   }
 
   componentDidMount() {
-    //TODO: Mutualiser en fonction avec OpinionDetal
-    axios.get("http://localhost:3001/opinions_of_consultation_" + this.state.id_consultation)
-      .then(res => {
-        this.setState({
-          number_of_opinions: res.data.number_of_opinions,
-          opinion_list: res.data.opinion_list
-        });
-        axios.get("http://localhost:3001/users")
-          .then(res => {
+      switch (this.state.id_consultation) {
+        case 0:
             this.setState({
-              user_list: res.data.user_list,
+              number_of_opinions: data.consultation_id_0_opinions_number,
+              opinion_list: data.consultation_id_0_opinions_details,
+              user_list: data.authors_list,
             });
-          }
-        );
-      }
-      // switch (this.state.id_consultation) {
-      //   case 0:
-      //       //METTRE LE TOUT ICI
-      //     break;
-      //   default:
-      //
-      // }
+          break;
+        default:
 
-    );
+      }
   }
 
   render() {
@@ -258,27 +266,35 @@ class OpinionView extends React.Component {
 class ConsultationDetail extends React.Component {
   constructor(props){
     super(props);
-    const { cookies } = props;
     const queryString = require('query-string');
     const parsed = queryString.parse(props.location.search);
+
+    if(props.cookies.get('parcours_jury') === 2) var tmp=3;
+    else var tmp = props.cookies.get('parcours_jury');
     this.state = {
       current_navigation: "Description",
-      id: parsed.id,
+      cookies: props,
+      id: parseInt(parsed.id),
       consultation_details: {},
       organisator_photo: "./profile_pic/sami.jpg",
+      parcours_jury: parseInt(props.cookies.get('parcours_jury')) === 2 ? constants.CONSULT_UNE_DESC : parseInt(props.cookies.get('parcours_jury')),
     };
     this.handleNavigationClick = this.handleNavigationClick.bind(this);
   }
 
   componentDidMount() {
       var consultation_info = data.consultation_detail_list_data[this.state.id];
-      var organisator_photo = "";
-      if (this.state.id === 0 || this.state.id === 2) organisator_photo = "./profile_pic/sami.jpg";
-      if (this.state.id === 1) organisator_photo = "./profile_pic/margot.jpg";
       this.setState({
         consultation_details: consultation_info,
-        organisator_photo: organisator_photo,
+        organisator_photo: data.authors_list[consultation_info.consultation_organisator_id].photo,
       });
+
+      if(this.state.parcours_jury === 3){
+        const { cookies } = this.state.cookies;
+        const d = new Date();
+        d.setTime(d.getTime() + (constants.ONE_DAY));
+        cookies.set('parcours_jury', constants.CONSULT_UNE_DESC ,{expires : d})
+      }
   }
 
   handleNavigationClick(e) {
@@ -290,7 +306,17 @@ class ConsultationDetail extends React.Component {
     case "Opinions":
       this.setState({
         current_navigation: "Opinions",
-      });break;
+      });
+      if(this.state.parcours_jury === constants.CONSULT_UNE_DESC){
+        const { cookies } = this.state.cookies;
+        const d = new Date();
+        d.setTime(d.getTime() + (constants.ONE_DAY));
+        cookies.set('parcours_jury', constants.CONSULT_UNE_OPINION ,{expires : d})
+        this.setState({
+          parcours_jury: constants.CONSULT_UNE_OPINION,
+        });
+      }
+      break;
     case "Vote":
       this.setState({
         current_navigation: "Vote",
@@ -312,7 +338,7 @@ class ConsultationDetail extends React.Component {
 
           <InfoBar info={this.state}/>
           {/* <Divider /> */}
-          <NavigationBar active={this.state.current_navigation} onClick={(e) => this.handleNavigationClick(e)}/>
+          <NavigationBar active={this.state.current_navigation} parcours_jury={this.state.parcours_jury} onClick={(e) => this.handleNavigationClick(e)}/>
           {/* <Divider /> */}
           { this.state.current_navigation === "Description" ?
             <DescriptionView desc={this.state.consultation_details.consultation_description}/> : null }
