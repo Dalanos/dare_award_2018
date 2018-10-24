@@ -115,6 +115,15 @@ class LoginPage extends Component {
       cookies.set('logged_in', 0, {expires : d});
       cookies.set('parcours_jury', constants.LOGIN_VALIDE ,{expires : d})
 
+      const user_info = {
+        id: 0,
+        first_name: "Jury",
+        last_name: "Dare Award",
+        accreditation_level: 1,
+        photo: "./profile_pic.jpg",
+      }
+      cookies.set('user_info', user_info ,{expires : d})
+
       this.setState ({
         successful_login: true,
       });

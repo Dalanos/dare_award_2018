@@ -5,7 +5,6 @@ import {
   Button,
   Modal
 } from 'semantic-ui-react'
-import axios from 'axios';
 
 import HeaderBar from "./../GenericElements/HeaderBar"
 import Footer from "./../GenericElements/Footer"
@@ -14,6 +13,7 @@ import TopPanel from "./../GenericElements/TopPanel"
 import CardsDashboard from "./../GenericElements/Cards"
 
 import * as constants from '../CONSTANTS';
+import * as data from '../data';
 
 import { withCookies } from 'react-cookie';
 
@@ -82,7 +82,7 @@ class SearchBar extends React.Component {
         <Button
           icon='star'
           size="large"
-          content='Favoris (à faire)'
+          content='Favoris (Désactivé)'
           className={this.state.searchDetails.favorite ?
             "button_search favorite button_favorite_clicked" : "button_search favorite "}
           onClick={this.handleClick.bind(this, "Favoris")}/>
@@ -134,108 +134,24 @@ class ConsultationList extends React.Component {
       consultation_list: [],
       displayed_list: [],
       modal_open: true,
+      parcours_jury: 2,
     }
     this.getFilteredList = this.getFilteredList.bind(this);
   }
 
 
   componentDidMount() {
-    var tmp_state = [
-      {
-        image: "./consultation_vignette/1_Election des délégués du personnel - 2018.jpeg",
-        header: "Présentation",
-        description: "Première partie du projet",
-        link:'/consultation_detail?id=0',
-        popularity: 9000,
-        days_left: 1,
-        vote: true,
-      },
-      {
-        image: "./consultation_vignette/1_Election des délégués du personnel - 2018.jpeg",
-        header: "Implémentation",
-        description: "Deuxième partie du projet",
-        link:'/consultation_detail?id=0',
-        popularity: 9000,
-        days_left: 2,
-        vote: true,
-      },
-      {
-        image: "./consultation_vignette/1_Election des délégués du personnel - 2018.jpeg",
-        header: "Equipe et originalité",
-        description: "Conclusion du projet",
-        link:'/consultation_detail?id=0',
-        popularity: 9000,
-        days_left: 3,
-        vote: true,
-      },
-    {
-      image: "./consultation_vignette/1_Election des délégués du personnel - 2018.jpeg",
-      header: "Election des délégués du personnel - 2018",
-      description: " Elisez vos futurs représentants pour l'année 2018 - 2020",
-      link:'/consultation_detail?id=0',
-      popularity: 150,
-      days_left: 15,
-      vote: true,
-    },
-    {
-      image: "./consultation_vignette/8_Fermeture de lentreprise sur le pont du 11 Novembre.jpeg",
-      header: "Fermeture de l'entreprise sur le pont du 11 Novembre?",
-      description: "",
-      link:"/consultation_detail?id=7",
-      popularity: 15,
-      days_left: 12,
-      vote: true,
-    },
-    {
-      image: "./consultation_vignette/5_Campagne publicitaire télévision - Printemps 2019.jpeg",
-      header: "Campagne publicitaire télévision - Printemps 2019",
-      description: "La campagne veut promouvoir l'image de marque de l'entreprise",
-      link:"/consultation_detail?id=4",
-      popularity: 37,
-      days_left: 25,
-      vote: false,
-    },
-    {
-      image: "./consultation_vignette/7_Conseil d'Administration - Modification des statuts - Octobre 2018.jpeg",
-      header: "Conseil d'Administration - Modification des statuts - Novembre 2018",
-      description: "",
-      link:"/consultation_detail?id=6",
-      popularity: 82,
-      days_left: 7,
-      vote: true,
-    },
-    {
-      image: "./consultation_vignette/6_Recherche du nom du nouveau logiciel de ventes.jpeg",
-      header: "Recherche du nom du nouveau logiciel de ventes",
-      description: "Appel à contributions",
-      link:"/consultation_detail?id=5",
-      popularity: 101,
-      days_left: 37,
-      vote: true,
-    },
-    {
-      image: "./consultation_vignette/4_Renouvellement du prestataire du restaurant dentreprise.jpeg",
-      header: "Renouvellement du prestataire du restaurant d'entreprise",
-      description: "Le contrat cadre se termine fin 2018. Donnez vos idées d'améliorations",
-      link:"/consultation_detail?id=3",
-      popularity: 74,
-      days_left: 15,
-      vote: false,
-    },
-    {
-      image: "./consultation_vignette/3_Restructuration fonctionnelle de la direction R&D.jpeg",
-      header: "Restructuration fonctionnelle de la direction R&D",
-      description: "Pour répondre à la demande grandissante, la direction évolue",
-      link:"/consultation_detail?id=2",
-      popularity: 68,
-      days_left: 15,
-      vote: false,
-    }
-  ];
+    const { cookies } = this.state.cookies;
+    var tmp_modal = false;
 
+    if(cookies.get('parcours_jury') < 2) {
+      tmp_modal = true;
+    }
     this.setState({
-      consultation_list: sortByNumber(tmp_state),
-      displayed_list: sortByNumber(tmp_state),
+      consultation_list: sortByNumber(data.consultation_list_data),
+      displayed_list: sortByNumber(data.consultation_list_data),
+      modal_open: tmp_modal,
+      parcours_jury: cookies.get('parcours_jury'),
     });
   }
 
@@ -315,7 +231,7 @@ class ConsultationList extends React.Component {
 
 
             <SearchBar callbackFromParent={this.getFilteredList}/>
-            <CardsDashboard card_list={this.state.displayed_list}/>
+            <CardsDashboard card_list={this.state.displayed_list} parcours_jury={this.state.parcours_jury}/>
           </Body>
           <Footer/>
       </React.Fragment>

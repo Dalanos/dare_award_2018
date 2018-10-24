@@ -11,6 +11,7 @@ class TopPanel extends React.Component {
 
   render() {
     var style = {};
+
     if(this.props.image !== undefined) {
       style = {
         // background-image: url("../img/structural/nature_sombre.jpg");

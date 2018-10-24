@@ -10,35 +10,77 @@ import {
   Link
 } from "react-router-dom";
 
+import { withCookies } from 'react-cookie';
+
+import * as constants from '../CONSTANTS';
+
 import "./GenericCSS.css"
 
 var images = require.context('../img', true);
 
 const GenericCard = (props) => {
-    return (
-      <Card >
-        <Image src={images(props.image)} as={Link} to={props.link} />
-        <Card.Content>
-          <Card.Header as={Link} to={props.link} className="text_alignements_cards">{props.header}</Card.Header>
-          <Card.Meta as={Link} to={props.link} className="text_alignements_cards">{props.meta}</Card.Meta>
-          <Card.Description className="text_alignements_cards">{props.description}</Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          <a style={{float: 'left'}}>
-            <Icon name='time' />
-            {props.days_left} jours restants
-          </a>
-          <a style={{float: 'right'}}>
-            <Icon name='fire' />
-            {props.popularity}
-          </a>
-        </Card.Content>
-      </Card>
-    );
+  switch(parseInt(props.parcours_jury)){
+
+    case constants.MODALE_VALIDE:
+        var style = {
+          opacity: '0.2',
+        };
+        var link= "";
+        if(props.popularity === 9000) {
+          style = {
+            border: 'red',
+            borderStyle: 'solid',
+            borderWidth: 'thick',
+          };
+          link = props.link
+        }
+        return (
+          <Card style={style}>
+            <Image src={images(props.image)} as={Link} to={link} />
+            <Card.Content>
+              <Card.Header as={Link} to={link} className="text_alignements_cards">{props.header}</Card.Header>
+              <Card.Meta as={Link} to={link} className="text_alignements_cards">{props.meta}</Card.Meta>
+              <Card.Description className="text_alignements_cards">{props.description}</Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <a style={{float: 'left'}}>
+                <Icon name='time' />
+                {props.days_left} jours restants
+              </a>
+              <a style={{float: 'right'}}>
+                <Icon name='fire' />
+                {props.popularity}
+              </a>
+            </Card.Content>
+          </Card>
+        );
+    break;
+
+    default:
+        return (
+          <Card >
+            <Image src={images(props.image)} as={Link} to={props.link} />
+            <Card.Content>
+              <Card.Header as={Link} to={props.link} className="text_alignements_cards">{props.header}</Card.Header>
+              <Card.Meta as={Link} to={props.link} className="text_alignements_cards">{props.meta}</Card.Meta>
+              <Card.Description className="text_alignements_cards">{props.description}</Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <a style={{float: 'left'}}>
+                <Icon name='time' />
+                {props.days_left} jours restants
+              </a>
+              <a style={{float: 'right'}}>
+                <Icon name='fire' />
+                {props.popularity}
+              </a>
+            </Card.Content>
+          </Card>
+        );
+  }
 }
 
 const TripleCardGroup = (props) => {
-
     return (
      <Grid columns={3}>
        <Grid.Row stretched className="triple_card_row">
@@ -51,6 +93,7 @@ const TripleCardGroup = (props) => {
              link={props.data_card_1.link}
              popularity={props.data_card_1.popularity}
              days_left={props.data_card_1.days_left}
+             parcours_jury={props.parcours_jury}
            />
          </Grid.Column>
          {props.data_card_2 &&
@@ -63,6 +106,7 @@ const TripleCardGroup = (props) => {
                link={props.data_card_2.link}
                popularity={props.data_card_2.popularity}
                days_left={props.data_card_2.days_left}
+               parcours_jury={props.parcours_jury}
              />
            </Grid.Column>}
          {props.data_card_3 &&
@@ -75,6 +119,7 @@ const TripleCardGroup = (props) => {
                link={props.data_card_3.link}
                popularity={props.data_card_3.popularity}
                days_left={props.data_card_3.days_left}
+               parcours_jury={props.parcours_jury}
              />
            </Grid.Column>}
        </Grid.Row>
@@ -85,8 +130,10 @@ const TripleCardGroup = (props) => {
 class CardsDashboard extends React.Component {
   constructor(props){
     super(props);
+    console.log(props)
     this.state={
       number_of_cards: 0,
+      etape_parcours: props.parcours_jury || 2,
       card_list : [],
     }
   }
@@ -103,6 +150,7 @@ class CardsDashboard extends React.Component {
               data_card_2={card_list[i-1]}
               data_card_3={card_list[i]}
               key={i}
+              parcours_jury={this.state.etape_parcours}
             />
           );
         }else if (i + 1 === card_list.length) {
@@ -112,6 +160,7 @@ class CardsDashboard extends React.Component {
                 data_card_1={card_list[i-1]}
                 data_card_2={card_list[i]}
                 key={i}
+                parcours_jury={this.state.etape_parcours}
               />
             );
           } else {
@@ -119,6 +168,7 @@ class CardsDashboard extends React.Component {
               <TripleCardGroup
                 data_card_1={card_list[i]}
                 key={i}
+                parcours_jury={this.state.etape_parcours}
               />
             );
           }
@@ -133,4 +183,4 @@ class CardsDashboard extends React.Component {
   }
 }
 
-export default CardsDashboard
+export default withCookies(CardsDashboard)

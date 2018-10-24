@@ -25,6 +25,8 @@ import Footer from "./../GenericElements/Footer"
 import Body from "./../GenericElements/Body"
 import TopPanel from "./../GenericElements/TopPanel"
 
+import * as data from '../data';
+
 import "./ConsultationDetail.css"
 
 var images = require.context('../img', true);
@@ -35,7 +37,7 @@ const InfoBar = props => {
       <Grid>
         <Grid.Row stretched>
           <Grid.Column width={3}>
-            <Image src={images(props.info.organisator_photo)} size='tiny'/>
+            <Image src={images(props.info.organisator_photo)} size='tiny' circular/>
           </Grid.Column>
           <Grid.Column width={10} textAlign='left'>
             <h3>{props.info.consultation_details.consultation_name}</h3>
@@ -43,7 +45,7 @@ const InfoBar = props => {
             <i>{props.info.consultation_details.consultation_pitch_sentence}</i>
           </Grid.Column>
           <Grid.Column width={3}>
-            Trois jours restants avant l'ouverture des votes
+            {props.info.consultation_details.days_left} jour(s) restant(s) avant l'ouverture des votes
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -93,17 +95,14 @@ const SearchBlock = props => {
       Filtres:
       <Form>
         <Form.Field>
-          <label>First Name</label>
+          <label>Titre</label>
           <input placeholder='First Name' />
         </Form.Field>
         <Form.Field>
-          <label>Last Name</label>
+          <label>Auteur</label>
           <input placeholder='Last Name' />
         </Form.Field>
-        <Form.Field>
-          <Checkbox label='I agree to the Terms and Conditions' />
-        </Form.Field>
-        <Button type='submit'>Submit</Button>
+        <Button type='submit'>Desactivé</Button>
       </Form>
     </Grid.Column>
   )
@@ -117,7 +116,7 @@ const Réactions = props => {
           <Card.Header>Réactions</Card.Header>
           <Card.Meta>Que pensez vous de cette consultation?</Card.Meta>
           <Card.Description>
-            Ajouter un truc visuel qui montre les votes
+            Imaginer un visuel qui permet de mesurer des réactions
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
@@ -230,6 +229,14 @@ class OpinionView extends React.Component {
           }
         );
       }
+      // switch (this.state.id_consultation) {
+      //   case 0:
+      //       //METTRE LE TOUT ICI
+      //     break;
+      //   default:
+      //
+      // }
+
     );
   }
 
@@ -258,35 +265,19 @@ class ConsultationDetail extends React.Component {
       current_navigation: "Description",
       id: parsed.id,
       consultation_details: {},
-      organisator_photo: cookies.get('user_info').photo,
+      organisator_photo: "./profile_pic/sami.jpg",
     };
     this.handleNavigationClick = this.handleNavigationClick.bind(this);
   }
 
   componentDidMount() {
-    axios.get("http://localhost:3001/consultation_details/")
-      .then(res => {
-        var consultation_info = res.data.consultation_list[this.state.id];
-
-        var tmp_state =
-          {
-            consultation_name: consultation_info.consultation_name,
-            consultation_pitch_sentence: consultation_info.consultation_pitch_sentence,
-            consultation_description: consultation_info.consultation_description,
-            consultation_organisator_id: consultation_info.consultation_organisator_id,
-            start_date: consultation_info.start_date,
-            end_date: consultation_info.end_date,
-            blockchain_vote: consultation_info.blockchain_vote,
-            media_video: consultation_info.media_video,
-            media_blog: consultation_info.media_blog,
-            media_comments: consultation_info.media_comments,
-            media_yammer: consultation_info.media_yammer,
-            detail_image: consultation_info.detail_image
-          }
-
-        this.setState({
-          consultation_details: tmp_state,
-        });
+      var consultation_info = data.consultation_detail_list_data[this.state.id];
+      var organisator_photo = "";
+      if (this.state.id === 0 || this.state.id === 2) organisator_photo = "./profile_pic/sami.jpg";
+      if (this.state.id === 1) organisator_photo = "./profile_pic/margot.jpg";
+      this.setState({
+        consultation_details: consultation_info,
+        organisator_photo: organisator_photo,
       });
   }
 

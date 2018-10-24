@@ -8,3 +8,6 @@ export const IMAGE_BRAINSTORMING = "./structural/rsz_brainstorming_sombre.jpg";
 
 export const LOGIN_VALIDE = 1;
 export const MODALE_VALIDE = 2;
+export const CONSULT_UNE_DESC = 3;
+export const CONSULT_UNE_OPINION = 4;
+export const CONSULT_UNE_OPINION_DETAIL_UN = 5;
