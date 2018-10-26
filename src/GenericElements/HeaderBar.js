@@ -32,7 +32,10 @@ class HeaderBar extends React.Component {
 
     var retour_liste_sujet = [
       <Menu.Item as={Link} to="/"
-      style={parseInt(this.state.cookies.get('parcours_jury')) === constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR ? constants.style : []}>
+      style={
+        parseInt(this.state.cookies.get('parcours_jury')) === constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR ||
+        parseInt(this.state.cookies.get('parcours_jury')) === constants.CONSULT_DEUX_VOTE_VALIDE
+      ? constants.style : []}>
       Liste des sujets</Menu.Item>
     ]
     var retour_desactivé = [

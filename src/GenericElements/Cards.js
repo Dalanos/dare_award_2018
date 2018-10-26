@@ -49,7 +49,57 @@ const GenericCard = (props) => {
           link = props.link;
         }
     break;
+    case constants.CONSULT_DEUX_RETOUR:
+        special_situation=true;
+        style = {
+          opacity: '0.2',
+        };
+        link= "";
+        if(props.popularity === 9000) {
+          link = props.link;
+          style = {};
+        }
+        if(props.popularity === 9001) {
+          style = constants.style;
+          link = {};
+        }
+        if(props.popularity === 9002) {
+          style = constants.style;
+          link = props.link;
+        }
+    break;
     default:
+      if(parseInt(props.parcours_jury) < constants.CONSULT_UNE_RETOUR){
+        special_situation=true;
+        style = {
+          opacity: '0.2',
+        };
+        link= "";
+        if(props.popularity === 9000) {
+          link = props.link;
+          style = {};
+        }
+      } else if(parseInt(props.parcours_jury) < constants.CONSULT_DEUX_RETOUR) {
+        special_situation=true;
+        style = {
+          opacity: '0.2',
+        };
+        link= "";
+        if(props.popularity === 9000 || props.popularity === 9001) {
+          link = props.link;
+          style = {};
+        }
+      } else if (parseInt(props.parcours_jury) < constants.CONSULT_TROIS_RETOUR) {
+        special_situation=true;
+        style = {
+          opacity: '0.2',
+        };
+        link= "";
+        if(props.popularity === 9000 || props.popularity === 9001 || props.popularity === 9002) {
+          link = props.link;
+          style = {};
+        }
+      }
   }
 
   return (

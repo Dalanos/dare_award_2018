@@ -61,15 +61,26 @@ const DescriptionView = props => {
   )
 };
 
-const NavigationBar = props => {
-    var style = {
-      border: 'red',
-      borderStyle: 'solid',
-      borderWidth: 'thick',
-    };
-    var render = [];
+const VoteView = props => {
+  console.log('On est dans le VoteView')
+  if(parseInt(props.cookies.get('parcours_jury')) === constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR){
+    const d = new Date();
+    d.setTime(d.getTime() + (constants.ONE_DAY));
+    props.cookies.set('parcours_jury', constants.CONSULT_DEUX_VOTE_VALIDE ,{expires : d})
+  }
 
-    if(props.parcours_jury < 15){
+  return (
+    <Container>
+      Hello my beauty
+    </Container>
+  )
+};
+
+const NavigationBar = props => {
+
+    var render = [];
+    var parcours_jury = parseInt(props.cookies.get('parcours_jury'));
+    if(parcours_jury < constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR){
       render.push(
         <Menu.Item
           name='Vote'
@@ -80,6 +91,7 @@ const NavigationBar = props => {
       render.push(
         <Menu.Item
           name='Vote'
+          style={parcours_jury === constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR ? constants.style : {}}
           active={props.active === 'Vote'}
           onClick={() => props.onClick("Vote")}
         />
@@ -92,7 +104,7 @@ const NavigationBar = props => {
           name='Description'
           active={props.active === 'Description'}
           onClick={() => props.onClick("Description")} />
-        <Menu.Item style={props.parcours_jury === 3 ? style : {}}
+        <Menu.Item style={parcours_jury === constants.CONSULT_UNE_DESC ? constants.style : {}}
           name='Opinions'
           active={props.active === 'Opinions'}
           onClick={() => props.onClick("Opinions")}
@@ -240,8 +252,46 @@ class OpinionListAsCard extends React.Component  {
     for (var i = 0; i < number_of_opinions; i++) {
       const current_opinion = opinion_list[i];
       switch(parseInt(this.props.state.cookies.get('parcours_jury'))){
-        case constants.CONSULT_UNE_OPINION:
+        case constants.CONSULT_DEUX_OPINION :
+        case constants.CONSULT_UNE_OPINION :
+        {
+          if(i === 0) {
+            render.push(
+              <OpinionCard
+                id_consultation={id_consultation}
+                opinion_detail={current_opinion}
+                author_detail={user_list[current_opinion.id_author]}
+                clickable={true}
+                highlighted={true}
+                key={i}/>
+            );
+          } else {
+            render.push(
+              <OpinionCard
+                id_consultation={id_consultation}
+                opinion_detail={current_opinion}
+                author_detail={user_list[current_opinion.id_author]}
+                clickable={false}
+                highlighted={false}
+                key={i}/>
+            );
+          }
+        }
+        break;
+        case constants.CONSULT_DEUX_OPINION_DETAIL_UN_RETOUR:
+        case constants.CONSULT_UNE_OPINION_DETAIL_UN_RETOUR:
+        {
             if(i === 0) {
+              render.push(
+                <OpinionCard
+                  id_consultation={id_consultation}
+                  opinion_detail={current_opinion}
+                  author_detail={user_list[current_opinion.id_author]}
+                  clickable={true}
+                  highlighted={false}
+                  key={i}/>
+              );
+            } else if (i === 1){
               render.push(
                 <OpinionCard
                   id_consultation={id_consultation}
@@ -251,7 +301,7 @@ class OpinionListAsCard extends React.Component  {
                   highlighted={true}
                   key={i}/>
               );
-            } else {
+            }  else {
               render.push(
                 <OpinionCard
                   id_consultation={id_consultation}
@@ -262,64 +312,22 @@ class OpinionListAsCard extends React.Component  {
                   key={i}/>
               );
             }
-          break;
-          case constants.CONSULT_UNE_OPINION_DETAIL_UN_RETOUR:
-              if(i === 0) {
-                render.push(
-                  <OpinionCard
-                    id_consultation={id_consultation}
-                    opinion_detail={current_opinion}
-                    author_detail={user_list[current_opinion.id_author]}
-                    clickable={true}
-                    highlighted={false}
-                    key={i}/>
-                );
-              } else if (i === 1){
-                render.push(
-                  <OpinionCard
-                    id_consultation={id_consultation}
-                    opinion_detail={current_opinion}
-                    author_detail={user_list[current_opinion.id_author]}
-                    clickable={true}
-                    highlighted={true}
-                    key={i}/>
-                );
-              }  else {
-                render.push(
-                  <OpinionCard
-                    id_consultation={id_consultation}
-                    opinion_detail={current_opinion}
-                    author_detail={user_list[current_opinion.id_author]}
-                    clickable={false}
-                    highlighted={false}
-                    key={i}/>
-                );
-              }
-            break;
-            case constants.CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR:
-                if(i === 2) {
-                  render.push(
-                    <OpinionCard
-                      id_consultation={id_consultation}
-                      opinion_detail={current_opinion}
-                      author_detail={user_list[current_opinion.id_author]}
-                      clickable={true}
-                      highlighted={true}
-                      key={i}/>
-                  );
-                } else {
-                  render.push(
-                    <OpinionCard
-                      id_consultation={id_consultation}
-                      opinion_detail={current_opinion}
-                      author_detail={user_list[current_opinion.id_author]}
-                      clickable={true}
-                      highlighted={false}
-                      key={i}/>
-                  );
-                }
-              break;
-            default:
+          }
+        break;
+        case constants.CONSULT_DEUX_OPINION_DETAIL_DEUX_RETOUR:
+        case constants.CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR:
+        {
+          if(i === 2) {
+            render.push(
+              <OpinionCard
+                id_consultation={id_consultation}
+                opinion_detail={current_opinion}
+                author_detail={user_list[current_opinion.id_author]}
+                clickable={true}
+                highlighted={true}
+                key={i}/>
+            );
+          } else {
             render.push(
               <OpinionCard
                 id_consultation={id_consultation}
@@ -329,6 +337,19 @@ class OpinionListAsCard extends React.Component  {
                 highlighted={false}
                 key={i}/>
             );
+          }
+        }
+        break;
+        default:
+        render.push(
+          <OpinionCard
+            id_consultation={id_consultation}
+            opinion_detail={current_opinion}
+            author_detail={user_list[current_opinion.id_author]}
+            clickable={true}
+            highlighted={false}
+            key={i}/>
+        );
       }
     }
 
@@ -361,6 +382,20 @@ class OpinionView extends React.Component {
               user_list: data.authors_list,
             });
           break;
+        case 1:
+            this.setState({
+              number_of_opinions: data.consultation_id_1_opinions_number,
+              opinion_list: data.consultation_id_1_opinions_details,
+              user_list: data.authors_list,
+            });
+          break;
+          // case 2:
+          //     this.setState({
+          //       number_of_opinions: data.consultation_id_2_opinions_number,
+          //       opinion_list: data.consultation_id_2_opinions_details,
+          //       user_list: data.authors_list,
+          //     });
+          //   break;
         default:
 
       }
@@ -421,6 +456,18 @@ class ConsultationDetail extends React.Component {
         case constants.CONSULT_UNE_OPINION_DETAIL_TROIS_VALIDE:
           new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR;
         break;
+        case constants.CONSULT_UNE_RETOUR:
+          new_state_jury=constants.CONSULT_DEUX_OPINION;
+        break;
+        case constants.CONSULT_DEUX_OPINION_DETAIL_UN_VALIDE:
+          new_state_jury=constants.CONSULT_DEUX_OPINION_DETAIL_UN_RETOUR;
+        break;
+        case constants.CONSULT_DEUX_OPINION_DETAIL_DEUX_VALIDE:
+          new_state_jury=constants.CONSULT_DEUX_OPINION_DETAIL_DEUX_RETOUR;
+        break;
+        case constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_VALIDE:
+          new_state_jury=constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR;
+        break;
         default:
           new_state_jury = this.state.parcours_jury;
       }
@@ -475,12 +522,14 @@ class ConsultationDetail extends React.Component {
 
           <InfoBar info={this.state}/>
           {/* <Divider /> */}
-          <NavigationBar active={this.state.current_navigation} parcours_jury={this.state.parcours_jury} onClick={(e) => this.handleNavigationClick(e)}/>
+          <NavigationBar active={this.state.current_navigation} cookies={this.state.cookies.cookies} onClick={(e) => this.handleNavigationClick(e)}/>
           {/* <Divider /> */}
           { this.state.current_navigation === "Description" ?
             <DescriptionView desc={this.state.consultation_details.consultation_description}/> : null }
           { this.state.current_navigation === "Opinions" ?
             <OpinionView id_consultation={this.state.id} cookies={this.state.cookies.cookies} /> : null }
+          { this.state.current_navigation === "Vote" ?
+            <VoteView id_consultation={this.state.id} cookies={this.state.cookies.cookies} /> : null }
         </Body>
         <Footer/>
       </React.Fragment>

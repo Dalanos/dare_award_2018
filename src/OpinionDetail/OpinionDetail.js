@@ -239,6 +239,24 @@ class OpinionDetail extends React.Component {
           new_state_parcours=constants.CONSULT_UNE_OPINION_DETAIL_TROIS_VALIDE;
         }
         break;
+        case constants.CONSULT_DEUX_OPINION:
+          if(this.state.id_opinion === "0"){
+            new_state=true;
+            new_state_parcours=constants.CONSULT_DEUX_OPINION_DETAIL_UN_VALIDE;
+          }
+          break;
+        case constants.CONSULT_DEUX_OPINION_DETAIL_UN_RETOUR:
+          if(this.state.id_opinion === "1"){
+            new_state=true;
+            new_state_parcours=constants.CONSULT_DEUX_OPINION_DETAIL_DEUX_VALIDE;
+          }
+          break;
+        case constants.CONSULT_DEUX_OPINION_DETAIL_DEUX_RETOUR:
+          if(this.state.id_opinion === "2"){
+            new_state=true;
+            new_state_parcours=constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_VALIDE;
+          }
+          break;
     }
 
     if(new_state){
@@ -257,6 +275,14 @@ class OpinionDetail extends React.Component {
           consult_detail = data.consultation_detail_list_data[this.state.id_consultation];
           opinion_details = data.consultation_id_0_opinions_details[this.state.id_opinion];
         break;
+      case 1:
+          consult_detail = data.consultation_detail_list_data[this.state.id_consultation];
+          opinion_details = data.consultation_id_1_opinions_details[this.state.id_opinion];
+        break;
+      // case 2:
+      //     consult_detail = data.consultation_detail_list_data[this.state.id_consultation];
+      //     opinion_details = data.consultation_id_2_opinions_details[this.state.id_opinion];
+      //   break;
       default:
     }
     var tmp_state = {
