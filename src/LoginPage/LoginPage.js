@@ -12,7 +12,6 @@ import {
   Segment
 } from 'semantic-ui-react'
 import { withCookies } from 'react-cookie';
-import axios from 'axios';
 
 import * as constants from '../CONSTANTS';
 

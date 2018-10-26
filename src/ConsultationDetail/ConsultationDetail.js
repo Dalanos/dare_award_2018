@@ -9,7 +9,6 @@ import {
   Button,
   Card,
   Form,
-  Divider
 } from 'semantic-ui-react'
 import {
   Link
@@ -63,7 +62,7 @@ const DescriptionView = props => {
 
 const VoteView = props => {
   console.log('On est dans le VoteView')
-  if(parseInt(props.cookies.get('parcours_jury')) === constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR){
+  if(parseInt(props.cookies.get('parcours_jury'), 10) === constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR){
     const d = new Date();
     d.setTime(d.getTime() + (constants.ONE_DAY));
     props.cookies.set('parcours_jury', constants.CONSULT_DEUX_VOTE_VALIDE ,{expires : d})
@@ -79,7 +78,7 @@ const VoteView = props => {
 const NavigationBar = props => {
 
     var render = [];
-    var parcours_jury = parseInt(props.cookies.get('parcours_jury'));
+    var parcours_jury = parseInt(props.cookies.get('parcours_jury'), 10);
     if(parcours_jury < constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR){
       render.push(
         <Menu.Item
@@ -133,15 +132,15 @@ const SearchBlock = props => {
   )
 };
 
-const Réactions = props => {
+const Reactions = props => {
   return (
     <Grid.Column width={4}>
       <Card className="reactions_box">
         <Card.Content>
-          <Card.Header>Réactions</Card.Header>
+          <Card.Header>Reactions</Card.Header>
           <Card.Meta>Que pensez vous de cette consultation?</Card.Meta>
           <Card.Description>
-            Imaginer un visuel qui permet de mesurer des réactions
+            Imaginer un visuel qui permet de mesurer des Reactions
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
@@ -236,9 +235,6 @@ const OpinionCard = (props) => {
 }
 
 class OpinionListAsCard extends React.Component  {
-  constructor(props){
-    super(props);
-  }
 
   render () {
 
@@ -251,7 +247,7 @@ class OpinionListAsCard extends React.Component  {
     var render = [];
     for (var i = 0; i < number_of_opinions; i++) {
       const current_opinion = opinion_list[i];
-      switch(parseInt(this.props.state.cookies.get('parcours_jury'))){
+      switch(parseInt(this.props.state.cookies.get('parcours_jury'), 10)){
         case constants.CONSULT_DEUX_OPINION :
         case constants.CONSULT_UNE_OPINION :
         {
@@ -389,13 +385,27 @@ class OpinionView extends React.Component {
               user_list: data.authors_list,
             });
           break;
-          // case 2:
-          //     this.setState({
-          //       number_of_opinions: data.consultation_id_2_opinions_number,
-          //       opinion_list: data.consultation_id_2_opinions_details,
-          //       user_list: data.authors_list,
-          //     });
-          //   break;
+          case 2:
+              this.setState({
+                number_of_opinions: data.consultation_id_2_opinions_number,
+                opinion_list: data.consultation_id_2_opinions_details,
+                user_list: data.authors_list,
+              });
+            break;
+          case 3:
+              this.setState({
+                number_of_opinions: data.consultation_id_3_opinions_number,
+                opinion_list: data.consultation_id_3_opinions_details,
+                user_list: data.authors_list,
+              });
+            break;
+          case 4:
+              this.setState({
+                number_of_opinions: data.consultation_id_4_opinions_number,
+                opinion_list: data.consultation_id_4_opinions_details,
+                user_list: data.authors_list,
+              });
+            break;
         default:
 
       }
@@ -408,7 +418,7 @@ class OpinionView extends React.Component {
           <Grid.Row stretched className="margin_opinion_row">
             <SearchBlock/>
             <OpinionListAsCard state={this.state}/>
-            <Réactions/>
+            <Reactions/>
           </Grid.Row>
         </Grid>
       </React.Fragment>
@@ -422,15 +432,13 @@ class ConsultationDetail extends React.Component {
     const queryString = require('query-string');
     const parsed = queryString.parse(props.location.search);
 
-    if(props.cookies.get('parcours_jury') === 2) var tmp=3;
-    else var tmp = props.cookies.get('parcours_jury');
     this.state = {
       current_navigation: "Description",
       cookies: props,
-      id: parseInt(parsed.id),
+      id: parseInt(parsed.id, 10),
       consultation_details: {},
       organisator_photo: "./profile_pic/sami.jpg",
-      parcours_jury: parseInt(props.cookies.get('parcours_jury')),
+      parcours_jury: parseInt(props.cookies.get('parcours_jury'), 10),
     };
     this.handleNavigationClick = this.handleNavigationClick.bind(this);
   }
@@ -456,6 +464,7 @@ class ConsultationDetail extends React.Component {
         case constants.CONSULT_UNE_OPINION_DETAIL_TROIS_VALIDE:
           new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR;
         break;
+
         case constants.CONSULT_UNE_RETOUR:
           new_state_jury=constants.CONSULT_DEUX_OPINION;
         break;
@@ -467,6 +476,10 @@ class ConsultationDetail extends React.Component {
         break;
         case constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_VALIDE:
           new_state_jury=constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR;
+        break;
+
+        case constants.CONSULT_DEUX_RETOUR:
+          new_state_jury=constants.CONSULT_TROIS_OPINION_ET_FINAL;
         break;
         default:
           new_state_jury = this.state.parcours_jury;

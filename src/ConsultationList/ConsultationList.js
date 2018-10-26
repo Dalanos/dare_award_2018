@@ -105,17 +105,6 @@ class SearchBar extends React.Component {
   }
 }
 
-const getDaysLeft = ( date1, date2 ) => {
-  var one_day=1000*60*60*24;
-  // Convert both dates to milliseconds
-  var date1_ms = date1.getTime();
-  var date2_ms = date2.getTime();
-  // Calculate the difference in milliseconds
-  var difference_ms = date2_ms - date1_ms;
-  // Convert back to days and return
-  return Math.round(difference_ms/one_day);
-}
-
 const sortByNumber = (consultation_list) => {
   return (
     consultation_list.sort(function(a, b) {
@@ -134,7 +123,7 @@ class ConsultationList extends React.Component {
       consultation_list: [],
       displayed_list: [],
       modal_open: true,
-      parcours_jury: parseInt(props.cookies.get('parcours_jury')),
+      parcours_jury: parseInt(props.cookies.get('parcours_jury'), 10),
     }
     this.getFilteredList = this.getFilteredList.bind(this);
   }
@@ -143,7 +132,7 @@ class ConsultationList extends React.Component {
   componentDidMount() {
     const { cookies } = this.state.cookies;
     var tmp_modal = false;
-    var current_parcours_jury=parseInt(cookies.get('parcours_jury'));
+    var current_parcours_jury=parseInt(cookies.get('parcours_jury'), 10);
 
     if(cookies.get('parcours_jury') < constants.MODALE_VALIDE) {
       tmp_modal = true;
@@ -161,15 +150,19 @@ class ConsultationList extends React.Component {
       case constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR:
         new_state_jury=constants.CONSULT_UNE_RETOUR;
       break;
-      case constants.CONSULT_UNE_OPINION_DETAIL_UN_VALIDE:
-        new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_UN_RETOUR;
+      case constants.CONSULT_DEUX_VOTE_VALIDE:
+        new_state_jury=constants.CONSULT_DEUX_RETOUR;
       break;
-      case constants.CONSULT_UNE_OPINION_DETAIL_DEUX_VALIDE:
-        new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR;
-      break;
-      case constants.CONSULT_UNE_OPINION_DETAIL_TROIS_VALIDE:
-        new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR;
-      break;
+      //VIRE CAR SEMBLE INUTILE
+      // case constants.CONSULT_UNE_OPINION_DETAIL_UN_VALIDE:
+      //   new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_UN_RETOUR;
+      // break;
+      // case constants.CONSULT_UNE_OPINION_DETAIL_DEUX_VALIDE:
+      //   new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR;
+      // break;
+      // case constants.CONSULT_UNE_OPINION_DETAIL_TROIS_VALIDE:
+      //   new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR;
+      // break;
       default:
         new_state_jury = this.state.parcours_jury;
     }

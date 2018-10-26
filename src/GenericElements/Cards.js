@@ -22,11 +22,11 @@ const GenericCard = (props) => {
   var special_situation=false;
   var style;
   var link= props.link;
-  switch(parseInt(props.parcours_jury)){
+  switch(parseInt(props.parcours_jury, 10)){
     case constants.MODALE_VALIDE:
         special_situation=true;
         style = {
-          opacity: '0.2',
+          opacity: '0.4',
         };
         link= "";
         if(props.popularity === 9000) {
@@ -37,7 +37,7 @@ const GenericCard = (props) => {
     case constants.CONSULT_UNE_RETOUR:
         special_situation=true;
         style = {
-          opacity: '0.2',
+          opacity: '0.4',
         };
         link= "";
         if(props.popularity === 9000) {
@@ -52,24 +52,35 @@ const GenericCard = (props) => {
     case constants.CONSULT_DEUX_RETOUR:
         special_situation=true;
         style = {
-          opacity: '0.2',
+          opacity: '0.4',
         };
         link= "";
         if(props.popularity === 9000) {
           link = props.link;
           style = {};
-        }
-        if(props.popularity === 9001) {
-          style = constants.style;
-          link = {};
-        }
-        if(props.popularity === 9002) {
-          style = constants.style;
+        } else if(props.popularity === 9001) {
           link = props.link;
+          style = {};
+        } else if(props.popularity === 9002) {
+          link = props.link;
+          style = constants.style;
+        }
+    break;
+    case constants.CONSULT_TROIS_OPINION_ET_FINAL:
+        special_situation=true;
+        style = {
+          opacity: '0.4',
+        };
+        link= "";
+        if(props.popularity === 9000 || props.popularity === 9001 ||
+            props.popularity === 9002 || props.popularity === 150 ||
+            props.popularity === 68) {
+          link = props.link;
+          style = {};
         }
     break;
     default:
-      if(parseInt(props.parcours_jury) < constants.CONSULT_UNE_RETOUR){
+      if(parseInt(props.parcours_jury, 10) < constants.CONSULT_UNE_RETOUR){
         special_situation=true;
         style = {
           opacity: '0.2',
@@ -79,23 +90,13 @@ const GenericCard = (props) => {
           link = props.link;
           style = {};
         }
-      } else if(parseInt(props.parcours_jury) < constants.CONSULT_DEUX_RETOUR) {
+      } else if(parseInt(props.parcours_jury, 10) < constants.CONSULT_DEUX_RETOUR) {
         special_situation=true;
         style = {
           opacity: '0.2',
         };
         link= "";
         if(props.popularity === 9000 || props.popularity === 9001) {
-          link = props.link;
-          style = {};
-        }
-      } else if (parseInt(props.parcours_jury) < constants.CONSULT_TROIS_RETOUR) {
-        special_situation=true;
-        style = {
-          opacity: '0.2',
-        };
-        link= "";
-        if(props.popularity === 9000 || props.popularity === 9001 || props.popularity === 9002) {
           link = props.link;
           style = {};
         }
@@ -179,7 +180,6 @@ class CardsDashboard extends React.Component {
       etape_parcours: props.parcours_jury || 2,
       card_list : [],
     }
-    console.log(this.state)
   }
 
   render () {

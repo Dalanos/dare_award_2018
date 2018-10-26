@@ -31,15 +31,15 @@ class HeaderBar extends React.Component {
   render() {
 
     var retour_liste_sujet = [
-      <Menu.Item as={Link} to="/"
+      <Menu.Item as={Link} to="/" key={1}
       style={
-        parseInt(this.state.cookies.get('parcours_jury')) === constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR ||
-        parseInt(this.state.cookies.get('parcours_jury')) === constants.CONSULT_DEUX_VOTE_VALIDE
+        parseInt(this.state.cookies.get('parcours_jury'), 10) === constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR ||
+        parseInt(this.state.cookies.get('parcours_jury'), 10) === constants.CONSULT_DEUX_VOTE_VALIDE
       ? constants.style : []}>
       Liste des sujets</Menu.Item>
     ]
     var retour_desactivé = [
-      <Menu.Item>Liste des sujets (Desactivé)</Menu.Item>
+      <Menu.Item key={1}>Liste des sujets (Desactivé)</Menu.Item>
     ]
     return(
       <div>
@@ -49,7 +49,7 @@ class HeaderBar extends React.Component {
               <Image size='mini' src={images("./logo.png")} style={{ marginRight: '1.5em' }} />
               Aurora
             </Menu.Item>
-            {parseInt(this.state.cookies.get('parcours_jury')) >= constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR ?
+            {parseInt(this.state.cookies.get('parcours_jury'), 10) >= constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR ?
               retour_liste_sujet : retour_desactivé}
             <Menu.Item position="right" className="remove_padding_profile_pic">
               <Image size='mini' src={images("./profile_pic.jpg")}  circular />

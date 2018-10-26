@@ -26,8 +26,8 @@ export const CONSULT_DEUX_OPINION_DETAIL_TROIS_VALIDE = 17;
 export const CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR = 18;
 export const CONSULT_DEUX_VOTE_VALIDE = 19;
 export const CONSULT_DEUX_RETOUR = 20;
+export const CONSULT_TROIS_OPINION_ET_FINAL = 21;
 
-export const CONSULT_TROIS_RETOUR = 25;
 export const style = {
   border: 'red',
   borderStyle: 'solid',

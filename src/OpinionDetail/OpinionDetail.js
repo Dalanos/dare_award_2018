@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios';
 import {
   Container,
   Menu,
@@ -66,11 +65,17 @@ const InfoBar = props => {
 };
 
 const ReturnBar = props => {
-
+  var parcours_jury = parseInt(props.cookies.get('parcours_jury'), 10);
+  var highlighted = parcours_jury === constants.CONSULT_UNE_OPINION_DETAIL_UN_VALIDE ||
+    parcours_jury === constants.CONSULT_UNE_OPINION_DETAIL_DEUX_VALIDE ||
+    parcours_jury === constants.CONSULT_UNE_OPINION_DETAIL_TROIS_VALIDE ||
+    parcours_jury === constants.CONSULT_DEUX_OPINION_DETAIL_UN_VALIDE ||
+    parcours_jury === constants.CONSULT_DEUX_OPINION_DETAIL_DEUX_VALIDE ||
+    parcours_jury === constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_VALIDE;
   return (
     <Menu pointing secondary >
       <Menu.Item
-        style={true? constants.style : {}}
+        style={highlighted? constants.style : {}}
         name= " Retour à la consultation"
         icon='arrow left'
         active={false}
@@ -216,7 +221,7 @@ class OpinionDetail extends React.Component {
     };
 
 
-    var parcours_jury = parseInt(cookies.get("parcours_jury"));
+    var parcours_jury = parseInt(cookies.get("parcours_jury"), 10);
     var new_state=false;
     var new_state_parcours;
 
@@ -257,6 +262,7 @@ class OpinionDetail extends React.Component {
             new_state_parcours=constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_VALIDE;
           }
           break;
+        default:
     }
 
     if(new_state){
@@ -270,7 +276,7 @@ class OpinionDetail extends React.Component {
     var consult_detail;
     var opinion_details;
 
-    switch(parseInt(this.state.id_consultation)){
+    switch(parseInt(this.state.id_consultation, 10)){
       case 0:
           consult_detail = data.consultation_detail_list_data[this.state.id_consultation];
           opinion_details = data.consultation_id_0_opinions_details[this.state.id_opinion];
@@ -279,10 +285,18 @@ class OpinionDetail extends React.Component {
           consult_detail = data.consultation_detail_list_data[this.state.id_consultation];
           opinion_details = data.consultation_id_1_opinions_details[this.state.id_opinion];
         break;
-      // case 2:
-      //     consult_detail = data.consultation_detail_list_data[this.state.id_consultation];
-      //     opinion_details = data.consultation_id_2_opinions_details[this.state.id_opinion];
-      //   break;
+      case 2:
+          consult_detail = data.consultation_detail_list_data[this.state.id_consultation];
+          opinion_details = data.consultation_id_2_opinions_details[this.state.id_opinion];
+        break;
+      case 3:
+          consult_detail = data.consultation_detail_list_data[this.state.id_consultation];
+          opinion_details = data.consultation_id_3_opinions_details[this.state.id_opinion];
+        break;
+      case 4:
+          consult_detail = data.consultation_detail_list_data[this.state.id_consultation];
+          opinion_details = data.consultation_id_4_opinions_details[this.state.id_opinion];
+        break;
       default:
     }
     var tmp_state = {

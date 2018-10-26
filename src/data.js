@@ -35,11 +35,20 @@ export const consultation_list_data =
   {
     image: "./consultation_vignette/1_Election des délégués du personnel - 2018.jpeg",
     header: "Election des délégués du personnel - 2018",
-    description: " Elisez vos futurs représentants pour l'année 2018 - 2020",
+    description: "Elisez vos futurs représentants pour l'année 2018 - 2020",
     link:'/consultation_detail?id=3',
     popularity: 150,
-    days_left: 15,
+    days_left: 4,
     vote: true,
+  },
+  {
+    image: "./consultation_vignette/3_Restructuration fonctionnelle de la direction R&D.jpeg",
+    header: "Restructuration fonctionnelle de la direction R&D",
+    description: "Pour répondre à la demande grandissante, la direction évolue",
+    link:"/consultation_detail?id=4",
+    popularity: 68,
+    days_left: 5,
+    vote: false,
   },
   {
     image: "./consultation_vignette/8_Fermeture de lentreprise sur le pont du 11 Novembre.jpeg",
@@ -86,15 +95,7 @@ export const consultation_list_data =
     days_left: 15,
     vote: false,
   },
-  {
-    image: "./consultation_vignette/3_Restructuration fonctionnelle de la direction R&D.jpeg",
-    header: "Restructuration fonctionnelle de la direction R&D",
-    description: "Pour répondre à la demande grandissante, la direction évolue",
-    link:"/consultation_detail?id=5",
-    popularity: 68,
-    days_left: 15,
-    vote: false,
-  }
+
 ];
 
 export const authors_list = [
@@ -209,6 +210,54 @@ export const consultation_detail_list_data = [
     days_left: 1,
     popularity: 9001,
     detail_image: "./profile_pic.jpg",
+  },
+  {
+    consultation_name: "Equipe et originalité",
+    consultation_pitch_sentence: "Conclusion du projet",
+    consultation_description: [
+      <React.Fragment>
+        <p style={{fontSize: '25px'}}> Equipe et vidéo </p>
+        <p>
+        Présenter nos trucs classes et la vidéo
+        </p>
+      </React.Fragment>
+    ],
+    consultation_organisator_id: 0,
+    days_left: 3,
+    popularity: 9002,
+    detail_image: "./profile_pic.jpg",
+  },
+  {
+    consultation_name: "Election des délégués du personnel - 2018",
+    consultation_pitch_sentence: "Elisez vos futurs représentants pour l'année 2018 - 2020",
+    consultation_description: [
+      <React.Fragment>
+        <p style={{fontSize: '25px'}}> Bla bla bla les emplois </p>
+        <p>
+          Ca a l'air génial
+        </p>
+      </React.Fragment>
+    ],
+    consultation_organisator_id: 1,
+    days_left: 4,
+    popularity: 150,
+    detail_image: "./consultation_vignette/1_Election des délégués du personnel - 2018.jpeg",
+  },
+  {
+    consultation_name: "Restructuration fonctionnelle de la direction R&D",
+    consultation_pitch_sentence: "Pour répondre à la demande grandissante, la direction évolue",
+    consultation_description: [
+      <React.Fragment>
+        <p style={{fontSize: '25px'}}> Trouver un texte</p>
+        <p>
+        Qui représente bien ce que ça pourrait être
+        </p>
+      </React.Fragment>
+    ],
+    consultation_organisator_id: 0,
+    days_left: 5,
+    popularity: 68,
+    detail_image: "./consultation_vignette/3_Restructuration fonctionnelle de la direction R&D.jpeg",
   },
 ]
 
@@ -463,6 +512,232 @@ export const consultation_id_1_opinions_details = [
           {
             id: 0,
             id_author: 4,
+            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
+          }
+        ]
+      }
+  },
+]
+
+export const consultation_id_2_opinions_number=1;
+export const consultation_id_2_opinions_details = [
+  {
+    id: 0,
+    id_author: 0,
+    title: "Petite blague de fin",
+    content: [
+      <React.Fragment>
+        <p>
+          Il faut un super truc de budget gna gna gna
+        </p>
+        <p>
+        </p>
+      </React.Fragment>
+    ],
+    post_date: "2018-10-01T10:20:30Z",
+    likes: 21,
+    comments: {
+        number_of_comments: 3,
+        comments_list: [
+          {
+            id: 1,
+            id_author: 0,
+            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
+          },
+          {
+            id: 2,
+            id_author: 1,
+            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
+          },
+          {
+            id: 3,
+            id_author: 0,
+            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
+          }
+        ]
+      }
+  },
+]
+
+export const consultation_id_3_opinions_number=3;
+export const consultation_id_3_opinions_details = [
+  {
+    id: 0,
+    id_author: 0,
+    title: "Budget",
+    content: [
+      <React.Fragment>
+        <p>
+          Il faut un super truc de budget gna gna gna
+        </p>
+        <p>
+        </p>
+      </React.Fragment>
+    ],
+    post_date: "2018-10-01T10:20:30Z",
+    likes: 21,
+    comments: {
+        number_of_comments: 3,
+        comments_list: [
+          {
+            id: 1,
+            id_author: 0,
+            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
+          },
+          {
+            id: 2,
+            id_author: 1,
+            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
+          },
+          {
+            id: 3,
+            id_author: 0,
+            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
+          }
+        ]
+      }
+  },
+  {
+    id: 1,
+    id_author: 1,
+    title: "Timeline",
+    content: [
+      <React.Fragment>
+        <p>
+          Un schéma via photo serait le plus adapté
+        </p>
+      </React.Fragment>
+    ],
+    post_date: "2018-08-01T10:20:30Z",
+    likes: 32,
+    comments: {
+        number_of_comments: 3,
+        comments_list: [
+          {
+            id: 1,
+            id_author: 3,
+            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
+          },
+          {
+            id: 0,
+            id_author: 1,
+            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
+          },
+          {
+            id: 1,
+            id_author: 4,
+            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
+          }
+        ]
+      }
+  },
+  {
+    id: 2,
+    id_author: 0,
+    title: "Tendances, challenges et opportunités marché",
+    content: [
+      <React.Fragment>
+        <p>
+          Il faut un super truc de marché gna gna gna
+        </p>
+        <p>
+        </p>
+      </React.Fragment>
+    ],
+    post_date: "2018-08-01T10:20:30Z",
+    likes: 12,
+    comments: {
+        number_of_comments: 3,
+        comments_list: [
+          {
+            id: 0,
+            id_author: 3,
+            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
+          },
+          {
+            id: 1,
+            id_author: 1,
+            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
+          },
+          {
+            id: 0,
+            id_author: 4,
+            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
+          }
+        ]
+      }
+  },
+]
+
+export const consultation_id_4_opinions_number=2;
+export const consultation_id_4_opinions_details = [
+  {
+    id: 0,
+    id_author: 0,
+    title: "Avis 1",
+    content: [
+      <React.Fragment>
+        <p>
+          Il faut un super truc de budget gna gna gna
+        </p>
+        <p>
+        </p>
+      </React.Fragment>
+    ],
+    post_date: "2018-10-01T10:20:30Z",
+    likes: 21,
+    comments: {
+        number_of_comments: 3,
+        comments_list: [
+          {
+            id: 1,
+            id_author: 0,
+            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
+          },
+          {
+            id: 2,
+            id_author: 1,
+            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
+          },
+          {
+            id: 3,
+            id_author: 0,
+            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
+          }
+        ]
+      }
+  },
+  {
+    id: 0,
+    id_author: 0,
+    title: "Avis 2",
+    content: [
+      <React.Fragment>
+        <p>
+          Il faut un super truc de budget gna gna gna
+        </p>
+        <p>
+        </p>
+      </React.Fragment>
+    ],
+    post_date: "2018-10-01T10:20:30Z",
+    likes: 21,
+    comments: {
+        number_of_comments: 3,
+        comments_list: [
+          {
+            id: 1,
+            id_author: 0,
+            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
+          },
+          {
+            id: 2,
+            id_author: 1,
+            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
+          },
+          {
+            id: 3,
+            id_author: 0,
             comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
           }
         ]
