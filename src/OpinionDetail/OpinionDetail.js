@@ -27,6 +27,9 @@ import Body from "./../GenericElements/Body"
 import "./../ConsultationDetail/ConsultationDetail.css"
 import "./OpinionDetail.css"
 
+import * as data from '../data';
+import * as constants from '../CONSTANTS';
+
 var images = require.context('../img', true);
 
 const getDaysSincePosting = ( currenDate, postingDate ) => {
@@ -46,7 +49,7 @@ const InfoBar = props => {
       <Grid>
         <Grid.Row stretched>
           <Grid.Column width={3}>
-            <Image src={images(props.info.organisator_photo)} size='tiny'/>
+            <Image src={images(props.info.organisator_photo)} size='tiny' circular/>
           </Grid.Column>
           <Grid.Column width={10} textAlign='left'>
             <h3>{props.info.consultation_details.consultation_name}</h3>
@@ -54,7 +57,7 @@ const InfoBar = props => {
             <i>{props.info.consultation_details.consultation_pitch_sentence}</i>
           </Grid.Column>
           <Grid.Column width={3}>
-            Trois jours restants avant l'ouverture des votes
+            {props.info.consultation_details.days_left} jour(s) restant(s) avant l'ouverture des votes
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -63,16 +66,24 @@ const InfoBar = props => {
 };
 
 const ReturnBar = props => {
-    return (
-      <Menu pointing secondary >
-        <Menu.Item
-          name= " Retour à la consultation"
-          icon='arrow left'
-          active={false}
-          as={Link}
-          to={'/consultation_detail?id=' + props.consultation_id}/>
-      </Menu>
-    );
+  console.log(props)
+  var style = {
+    border: 'red',
+    borderStyle: 'solid',
+    borderWidth: 'thick',
+  };
+
+  return (
+    <Menu pointing secondary >
+      <Menu.Item
+        style={true? style : {}}
+        name= " Retour à la consultation"
+        icon='arrow left'
+        active={false}
+        as={Link}
+        to={'/consultation_detail?id=' + props.consultation_id}/>
+    </Menu>
+  );
 };
 
 const WaitingDisplay = props => {
@@ -107,7 +118,7 @@ class CommentFeed extends React.Component {
         </Header>
 
         <Comment>
-          <Comment.Avatar src={images("./profile_pic/sami_yacoubi_1.jpeg")} />
+          <Comment.Avatar src={images(data.authors_list[0].photo)} />
           <Comment.Content>
             <Comment.Author as='a'>Matt</Comment.Author>
             <Comment.Metadata>
@@ -121,7 +132,7 @@ class CommentFeed extends React.Component {
         </Comment>
 
         <Comment>
-          <Comment.Avatar src={images("./profile_pic/sami_yacoubi_1.jpeg")} />
+          <Comment.Avatar src={images(data.authors_list[0].photo)} />
           <Comment.Content>
             <Comment.Author as='a'>Elliot Fu</Comment.Author>
             <Comment.Metadata>
@@ -136,7 +147,7 @@ class CommentFeed extends React.Component {
           </Comment.Content>
           <Comment.Group>
             <Comment>
-              <Comment.Avatar src={images("./profile_pic/sami_yacoubi_1.jpeg")} />
+              <Comment.Avatar src={images(data.authors_list[0].photo)} />
               <Comment.Content>
                 <Comment.Author as='a'>Jenny Hess</Comment.Author>
                 <Comment.Metadata>
@@ -152,7 +163,7 @@ class CommentFeed extends React.Component {
         </Comment>
 
         <Comment>
-          <Comment.Avatar src={images("./profile_pic/sami_yacoubi_1.jpeg")} />
+          <Comment.Avatar src={images(data.authors_list[0].photo)} />
           <Comment.Content>
             <Comment.Author as='a'>Joe Henderson</Comment.Author>
             <Comment.Metadata>
@@ -183,16 +194,6 @@ class OpinionPanel extends React.Component {
     };
   }
 
-  //Previous system before the big page loader
-  // componentDidUpdate(prevProps) {
-  //   if (this.props !== prevProps && this.props.opinion && this.props.user_list) {
-  //     this.setState({
-  //       opinion: this.props.opinion,
-  //       user_list: this.props.user_list,
-  //     })
-  //   }
-  // }
-
   render() {
     return (
       <Container>
@@ -218,52 +219,66 @@ class OpinionDetail extends React.Component {
       id_opinion: parsed.id_opinion,
       consultation_details: {},
       organisator_photo: cookies.get('user_info').photo,
+      cookies: cookies,
     };
+
+
+    var parcours_jury = parseInt(cookies.get("parcours_jury"));
+    var new_state=false;
+    var new_state_parcours;
+    console.log(parcours_jury)
+    switch(parcours_jury){
+      case constants.CONSULT_UNE_OPINION:
+        new_state=true;
+        new_state_parcours=constants.CONSULT_UNE_OPINION_DETAIL_UN_VALIDE;
+        break;
+      case constants.CONSULT_UNE_OPINION_DETAIL_UN_RETOUR:
+        new_state=true;
+        new_state_parcours=constants.CONSULT_UNE_OPINION_DETAIL_DEUX_VALIDE;
+        break;
+      case constants.CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR:
+        new_state=true;
+        new_state_parcours=constants.CONSULT_UNE_OPINION_DETAIL_TROIS_VALIDE;
+        break;
+    }
+
+    if(new_state){
+      const d = new Date();
+      d.setTime(d.getTime() + (constants.ONE_DAY));
+      cookies.set('parcours_jury', new_state_parcours ,{expires : d})
+    }
   }
 
   componentDidMount() {
-    //Consultation_details
-    axios.get("http://localhost:3001/consultation_details/")
-      .then(res => {
-        var consultation_info = res.data.consultation_list[this.state.id_consultation];
-        var tmp_state =
-          {
-            consultation_name: consultation_info.consultation_name,
-            consultation_pitch_sentence: consultation_info.consultation_pitch_sentence,
-            consultation_organisator_id: consultation_info.consultation_organisator_id,
-            start_date: consultation_info.start_date,
-            end_date: consultation_info.end_date,
-          }
-        //Opinion détails
-        axios.get("http://localhost:3001/opinions_of_consultation_" + this.state.id_consultation)
-          .then(res => {
-            this.setState({
-              opinion_details: res.data.opinion_list[this.state.id_opinion]
-            });
-            //Author of opinion détails
-            axios.get("http://localhost:3001/users")
-              .then(res => {
-                this.setState({
-                  user_list: res.data.user_list,
-                  dataLoaded: true,
-                });
-              }
-            );
-          }
-        );
+    var consult_detail;
+    var opinion_details;
 
-        this.setState({
-          consultation_details: tmp_state,
-        });
-      });
+    switch(parseInt(this.state.id_consultation)){
+      case 0:
+          consult_detail = data.consultation_detail_list_data[this.state.id_consultation];
+          opinion_details = data.consultation_id_0_opinions_details[this.state.id_opinion];
+        break;
+      default:
+    }
+    var tmp_state = {
+      consultation_name: consult_detail.consultation_name,
+      consultation_pitch_sentence: consult_detail.consultation_pitch_sentence,
+      consultation_organisator_id: consult_detail.consultation_organisator_id,
+      days_left: consult_detail.days_left,
+    }
+    this.setState({
+      consultation_details: tmp_state,
+      dataLoaded: true,
+      user_list: data.authors_list,
+      opinion_details: opinion_details,
+    });
+
+
   }
 
 
   render() {
     let display;
-    console.log(this.state.dataLoaded)
-    console.log(this.state.opinion_details)
-    console.log(this.state.user_list)
     if(this.state.dataLoaded) {
       display = <OpinionPanel
         opinion={this.state.opinion_details}
@@ -278,7 +293,7 @@ class OpinionDetail extends React.Component {
           {/* <TopPanel
             image={this.state.consultation_details.detail_image}/> */}
           <InfoBar info={this.state}/>
-          <ReturnBar consultation_id={this.state.id_consultation}/>
+          <ReturnBar consultation_id={this.state.id_consultation} cookies={this.state.cookies}/>
           {display}
           <CommentFeed/>
         </Body>

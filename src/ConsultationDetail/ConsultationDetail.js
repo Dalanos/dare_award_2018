@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios';
 import {
   Container,
   Menu,
@@ -10,7 +9,6 @@ import {
   Button,
   Card,
   Form,
-  Checkbox,
   Divider
 } from 'semantic-ui-react'
 import {
@@ -77,7 +75,7 @@ const NavigationBar = props => {
     };
     var render = [];
 
-    if(props.parcours_jury === 3){
+    if(props.parcours_jury === 3 || props.parcours_jury === 4){
       render.push(
         <Menu.Item
           name='Vote'
@@ -159,35 +157,72 @@ const OpinionCard = (props) => {
   if(props.author_detail) {
     const shortened_title = props.opinion_detail.title.substring(0, 45);
     const shortened_content = props.opinion_detail.content.substring(0, 70);
-    return (
-      <Item className="encadrer_bloc">
-        <Item.Image
-          size='tiny'
-          src={images(props.author_detail.photo)}
-          as={Link}
-          to={'/opinion_detail?id_consultation=' + props.id_consultation + '&id_opinion=' + props.opinion_detail.id}
-          circular/>
 
-        <Item.Content verticalAlign='middle'>
-          <Item.Header>
-            {shortened_title}
-          </Item.Header>
-          <Item.Meta>
-            {props.author_detail.first_name + " " + props.author_detail.last_name}
-          </Item.Meta>
-          <Item.Description>
-            <p>{shortened_content}</p>
-          </Item.Description>
-        </Item.Content>
+    var style = {
+      border: 'red',
+      borderStyle: 'solid',
+      borderWidth: 'thick',
+    };
+    if(props.clickable){
+      return (
+        <Item className="encadrer_bloc" style={props.highlighted? style : {}}>
+          <Item.Image
+            size='tiny'
+            src={images(props.author_detail.photo)}
+            as={Link}
+            to={'/opinion_detail?id_consultation=' + props.id_consultation + '&id_opinion=' + props.opinion_detail.id}
+            circular/>
 
-        <Item.Content verticalAlign='middle' className="buttons_alignement">
-          <Button.Group vertical labeled icon>
-            <Button icon='like' content={props.opinion_detail.likes} className="button_like_fav"/>
-            <Button icon='favorite' content='Favorite' className="button_like_fav"/>
-          </Button.Group>
-        </Item.Content>
-      </Item>
-    );
+          <Item.Content verticalAlign='middle'>
+            <Item.Header>
+              {shortened_title}
+            </Item.Header>
+            <Item.Meta>
+              {props.author_detail.first_name + " " + props.author_detail.last_name}
+            </Item.Meta>
+            <Item.Description>
+              <p>{shortened_content}</p>
+            </Item.Description>
+          </Item.Content>
+
+          <Item.Content verticalAlign='middle' className="buttons_alignement">
+            <Button.Group vertical labeled icon>
+              <Button icon='like' content={props.opinion_detail.likes} className="button_like_fav"/>
+              <Button icon='favorite' content='Favorite' className="button_like_fav"/>
+            </Button.Group>
+          </Item.Content>
+        </Item>
+      );
+    } else {
+      return (
+        <Item className="encadrer_bloc" style={props.highlighted? style : {opacity: '0.5'}}>
+          <Item.Image
+            size='tiny'
+            src={images(props.author_detail.photo)}
+            circular/>
+
+          <Item.Content verticalAlign='middle'>
+            <Item.Header>
+              {shortened_title}
+            </Item.Header>
+            <Item.Meta>
+              {props.author_detail.first_name + " " + props.author_detail.last_name}
+            </Item.Meta>
+            <Item.Description>
+              <p>{shortened_content}</p>
+            </Item.Description>
+          </Item.Content>
+
+          <Item.Content verticalAlign='middle' className="buttons_alignement">
+            <Button.Group vertical labeled icon>
+              <Button icon='like' content={props.opinion_detail.likes} className="button_like_fav"/>
+              <Button icon='favorite' content='Favorite' className="button_like_fav"/>
+            </Button.Group>
+          </Item.Content>
+        </Item>
+      );
+    }
+
   }else {
     return null;
   }
@@ -195,8 +230,12 @@ const OpinionCard = (props) => {
 }
 
 class OpinionListAsCard extends React.Component  {
+  constructor(props){
+    super(props);
+  }
 
   render () {
+
     const opinion_list=this.props.state.opinion_list;
     const id_consultation = this.props.state.id_consultation;
     const number_of_opinions = this.props.state.number_of_opinions;
@@ -206,13 +245,97 @@ class OpinionListAsCard extends React.Component  {
     var render = [];
     for (var i = 0; i < number_of_opinions; i++) {
       const current_opinion = opinion_list[i];
-      render.push(
-        <OpinionCard
-          id_consultation={id_consultation}
-          opinion_detail={current_opinion}
-          author_detail={user_list[current_opinion.id_author]}
-          key={i}/>
-      );
+      switch(parseInt(this.props.state.cookies.get('parcours_jury'))){
+        case constants.CONSULT_UNE_OPINION:
+            if(i === 0) {
+              render.push(
+                <OpinionCard
+                  id_consultation={id_consultation}
+                  opinion_detail={current_opinion}
+                  author_detail={user_list[current_opinion.id_author]}
+                  clickable={true}
+                  highlighted={true}
+                  key={i}/>
+              );
+            } else {
+              render.push(
+                <OpinionCard
+                  id_consultation={id_consultation}
+                  opinion_detail={current_opinion}
+                  author_detail={user_list[current_opinion.id_author]}
+                  clickable={false}
+                  highlighted={false}
+                  key={i}/>
+              );
+            }
+          break;
+          case constants.CONSULT_UNE_OPINION_DETAIL_UN_RETOUR:
+              if(i === 0) {
+                render.push(
+                  <OpinionCard
+                    id_consultation={id_consultation}
+                    opinion_detail={current_opinion}
+                    author_detail={user_list[current_opinion.id_author]}
+                    clickable={true}
+                    highlighted={false}
+                    key={i}/>
+                );
+              } else if (i === 1){
+                render.push(
+                  <OpinionCard
+                    id_consultation={id_consultation}
+                    opinion_detail={current_opinion}
+                    author_detail={user_list[current_opinion.id_author]}
+                    clickable={true}
+                    highlighted={true}
+                    key={i}/>
+                );
+              }  else {
+                render.push(
+                  <OpinionCard
+                    id_consultation={id_consultation}
+                    opinion_detail={current_opinion}
+                    author_detail={user_list[current_opinion.id_author]}
+                    clickable={false}
+                    highlighted={false}
+                    key={i}/>
+                );
+              }
+            break;
+            case constants.CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR:
+                if(i === 2) {
+                  render.push(
+                    <OpinionCard
+                      id_consultation={id_consultation}
+                      opinion_detail={current_opinion}
+                      author_detail={user_list[current_opinion.id_author]}
+                      clickable={true}
+                      highlighted={true}
+                      key={i}/>
+                  );
+                } else {
+                  render.push(
+                    <OpinionCard
+                      id_consultation={id_consultation}
+                      opinion_detail={current_opinion}
+                      author_detail={user_list[current_opinion.id_author]}
+                      clickable={true}
+                      highlighted={false}
+                      key={i}/>
+                  );
+                }
+              break;
+            default:
+            render.push(
+              <OpinionCard
+                id_consultation={id_consultation}
+                opinion_detail={current_opinion}
+                author_detail={user_list[current_opinion.id_author]}
+                clickable={true}
+                highlighted={false}
+                key={i}/>
+            );
+      }
     }
 
     return (
@@ -225,12 +348,13 @@ class OpinionListAsCard extends React.Component  {
   }
 };
 
-
 class OpinionView extends React.Component {
   constructor(props){
     super(props);
+    console.log(props.cookies.get('parcours_jury'))
     this.state = {
       id_consultation: props.id_consultation,
+      cookies: props.cookies,
     };
   }
 
@@ -277,7 +401,7 @@ class ConsultationDetail extends React.Component {
       id: parseInt(parsed.id),
       consultation_details: {},
       organisator_photo: "./profile_pic/sami.jpg",
-      parcours_jury: parseInt(props.cookies.get('parcours_jury')) === 2 ? constants.CONSULT_UNE_DESC : parseInt(props.cookies.get('parcours_jury')),
+      parcours_jury: parseInt(props.cookies.get('parcours_jury')),
     };
     this.handleNavigationClick = this.handleNavigationClick.bind(this);
   }
@@ -289,12 +413,28 @@ class ConsultationDetail extends React.Component {
         organisator_photo: data.authors_list[consultation_info.consultation_organisator_id].photo,
       });
 
-      if(this.state.parcours_jury === 3){
+      var new_state_jury;
+      switch(this.state.parcours_jury){
+        case constants.MODALE_VALIDE:
+          new_state_jury=constants.CONSULT_UNE_DESC;
+        break;
+        case constants.CONSULT_UNE_OPINION_DETAIL_UN_VALIDE:
+          new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_UN_RETOUR;
+        break;
+        case constants.CONSULT_UNE_OPINION_DETAIL_DEUX_VALIDE:
+          new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR;
+        break;
+        default:
+          new_state_jury = this.state.parcours_jury;
+      }
+
         const { cookies } = this.state.cookies;
         const d = new Date();
         d.setTime(d.getTime() + (constants.ONE_DAY));
-        cookies.set('parcours_jury', constants.CONSULT_UNE_DESC ,{expires : d})
-      }
+        cookies.set('parcours_jury', new_state_jury ,{expires : d});
+        this.setState({
+          parcours_jury: new_state_jury,
+        });
   }
 
   handleNavigationClick(e) {
@@ -343,7 +483,7 @@ class ConsultationDetail extends React.Component {
           { this.state.current_navigation === "Description" ?
             <DescriptionView desc={this.state.consultation_details.consultation_description}/> : null }
           { this.state.current_navigation === "Opinions" ?
-            <OpinionView id_consultation={this.state.id} /> : null }
+            <OpinionView id_consultation={this.state.id} cookies={this.state.cookies.cookies} /> : null }
         </Body>
         <Footer/>
       </React.Fragment>

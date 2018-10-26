@@ -108,7 +108,7 @@ class LoginPage extends Component {
 
 
   handleFormAuthenticationSubmit(email, password) {
-    if(email === "jury_dare_award" && password === "votez_pour_nous") {
+    if(email === "jury_dare_award" && password === "vote") {
       const { cookies } = this.state.cookies;
       const d = new Date();
       d.setTime(d.getTime() + (constants.ONE_DAY));

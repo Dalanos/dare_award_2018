@@ -104,7 +104,7 @@ export const authors_list = [
   },
   {
     id: 1,
-    first_name: "margot",
+    first_name: "Margot",
     last_name: "Boulet-Maurel",
     entity_name: "",
     email: "sami.yacoubi@hotmail.fr",
@@ -125,12 +125,40 @@ export const consultation_detail_list_data = [
   },
 ]
 
-export const consultation_id_0_opinions_number=1;
+export const consultation_id_0_opinions_number=3;
 export const consultation_id_0_opinions_details = [
   {
     id: 0,
-    id_author: 0,
+    id_author: 1,
     title: "L'offre / La solution",
+    content: "m ligula id sapien commodo sodales sit amet ac est.<br/>Phasellus ac odio mi. Nam id pulvinar tortor. Nulla aliquet nisi id lorem rhoncus, at convallis lectus malesuada. Nam fermentum ante id dolor volutpat, vitae consequat ligula sagittis. Donec magna mi, sodales vitae enim quis, sagittis tincidunt enim. Maecenas porttitor dignissim lacus, eget pharetra tellus bibendum sed. Nulla mauris diam, lobortis sit amet feugiat quis, hendrerit vel est. In facilisis arcu ut accumsan mattis. Curabitur eu elit eu quam varius fringilla. Mauris iaculis lorem nec nibh sollicitudin vulputate. Donec tincidunt varius erat nec consectetur. Vestibulum dignissim at velit rutrum fermentum. Proin suscipit ornare elit, eu feugiat nisl facilisis eu. Nullam a malesuada lacus. Pellentesque ante augue, ullamcorper sit amet nunc eget, congue scelerisque est. Phasellus in dapibus tortor, sit amet hendrerit sapien.<br/>Duis porttitor nisl tortor, eget laoreet orci accumsan eu. Nulla pretium nunc eget efficitu",
+    post_date: "2018-10-01T10:20:30Z",
+    likes: 38,
+    comments: {
+        number_of_comments: 3,
+        comments_list: [
+          {
+            id: 1,
+            id_author: 0,
+            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
+          },
+          {
+            id: 2,
+            id_author: 1,
+            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
+          },
+          {
+            id: 3,
+            id_author: 0,
+            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
+          }
+        ]
+      }
+  },
+  {
+    id: 1,
+    id_author: 0,
+    title: "Nos clients / utilisateurs",
     content: "m ligula id sapien commodo sodales sit amet ac est.<br/>Phasellus ac odio mi. Nam id pulvinar tortor. Nulla aliquet nisi id lorem rhoncus, at convallis lectus malesuada. Nam fermentum ante id dolor volutpat, vitae consequat ligula sagittis. Donec magna mi, sodales vitae enim quis, sagittis tincidunt enim. Maecenas porttitor dignissim lacus, eget pharetra tellus bibendum sed. Nulla mauris diam, lobortis sit amet feugiat quis, hendrerit vel est. In facilisis arcu ut accumsan mattis. Curabitur eu elit eu quam varius fringilla. Mauris iaculis lorem nec nibh sollicitudin vulputate. Donec tincidunt varius erat nec consectetur. Vestibulum dignissim at velit rutrum fermentum. Proin suscipit ornare elit, eu feugiat nisl facilisis eu. Nullam a malesuada lacus. Pellentesque ante augue, ullamcorper sit amet nunc eget, congue scelerisque est. Phasellus in dapibus tortor, sit amet hendrerit sapien.<br/>Duis porttitor nisl tortor, eget laoreet orci accumsan eu. Nulla pretium nunc eget efficitu",
     post_date: "2018-08-01T10:20:30Z",
     likes: 38,
@@ -143,12 +171,40 @@ export const consultation_id_0_opinions_details = [
             comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
           },
           {
-            id: 2,
+            id: 0,
             id_author: 1,
             comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
           },
           {
-            id: 3,
+            id: 1,
+            id_author: 4,
+            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
+          }
+        ]
+      }
+  },
+  {
+    id: 2,
+    id_author: 1,
+    title: "Offre d'accompagnement",
+    content: "m ligula id sapien commodo sodales sit amet ac est.<br/>Phasellus ac odio mi. Nam id pulvinar tortor. Nulla aliquet nisi id lorem rhoncus, at convallis lectus malesuada. Nam fermentum ante id dolor volutpat, vitae consequat ligula sagittis. Donec magna mi, sodales vitae enim quis, sagittis tincidunt enim. Maecenas porttitor dignissim lacus, eget pharetra tellus bibendum sed. Nulla mauris diam, lobortis sit amet feugiat quis, hendrerit vel est. In facilisis arcu ut accumsan mattis. Curabitur eu elit eu quam varius fringilla. Mauris iaculis lorem nec nibh sollicitudin vulputate. Donec tincidunt varius erat nec consectetur. Vestibulum dignissim at velit rutrum fermentum. Proin suscipit ornare elit, eu feugiat nisl facilisis eu. Nullam a malesuada lacus. Pellentesque ante augue, ullamcorper sit amet nunc eget, congue scelerisque est. Phasellus in dapibus tortor, sit amet hendrerit sapien.<br/>Duis porttitor nisl tortor, eget laoreet orci accumsan eu. Nulla pretium nunc eget efficitu",
+    post_date: "2018-08-01T10:20:30Z",
+    likes: 38,
+    comments: {
+        number_of_comments: 3,
+        comments_list: [
+          {
+            id: 0,
+            id_author: 3,
+            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
+          },
+          {
+            id: 1,
+            id_author: 1,
+            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
+          },
+          {
+            id: 0,
             id_author: 4,
             comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
           }
