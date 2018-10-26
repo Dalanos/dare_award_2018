@@ -53,16 +53,10 @@ const InfoBar = props => {
 };
 
 const DescriptionView = props => {
+
   return (
     <Container>
-      {/* <React.Fragment>
-        {props.desc}
-      </React.Fragment> */}
-      {/* <div dangerouslySetInnerHTML={{ __html: this.props.match.description }} />
-      <p>
-        {props.desc}
-      </p> */}
-      <div dangerouslySetInnerHTML={{ __html: props.desc }} />
+      {props.desc}
     </Container>
   )
 };
@@ -75,7 +69,7 @@ const NavigationBar = props => {
     };
     var render = [];
 
-    if(props.parcours_jury === 3 || props.parcours_jury === 4){
+    if(props.parcours_jury < 15){
       render.push(
         <Menu.Item
           name='Vote'
@@ -156,7 +150,7 @@ const Réactions = props => {
 const OpinionCard = (props) => {
   if(props.author_detail) {
     const shortened_title = props.opinion_detail.title.substring(0, 45);
-    const shortened_content = props.opinion_detail.content.substring(0, 70);
+    const shortened_content = "";
 
     var style = {
       border: 'red',
@@ -423,6 +417,9 @@ class ConsultationDetail extends React.Component {
         break;
         case constants.CONSULT_UNE_OPINION_DETAIL_DEUX_VALIDE:
           new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR;
+        break;
+        case constants.CONSULT_UNE_OPINION_DETAIL_TROIS_VALIDE:
+          new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR;
         break;
         default:
           new_state_jury = this.state.parcours_jury;

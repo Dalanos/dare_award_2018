@@ -16,3 +16,10 @@ export const CONSULT_UNE_OPINION_DETAIL_DEUX_VALIDE = 7;
 export const CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR = 8;
 export const CONSULT_UNE_OPINION_DETAIL_TROIS_VALIDE = 9;
 export const CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR = 10;
+export const CONSULT_UNE_RETOUR = 11;
+
+export const style = {
+  border: 'red',
+  borderStyle: 'solid',
+  borderWidth: 'thick',
+};

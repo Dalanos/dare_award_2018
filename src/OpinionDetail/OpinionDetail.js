@@ -66,17 +66,11 @@ const InfoBar = props => {
 };
 
 const ReturnBar = props => {
-  console.log(props)
-  var style = {
-    border: 'red',
-    borderStyle: 'solid',
-    borderWidth: 'thick',
-  };
 
   return (
     <Menu pointing secondary >
       <Menu.Item
-        style={true? style : {}}
+        style={true? constants.style : {}}
         name= " Retour à la consultation"
         icon='arrow left'
         active={false}
@@ -200,7 +194,7 @@ class OpinionPanel extends React.Component {
         <Header as='h1' textAlign="left">{this.state.opinion.title || ""}</Header>
         <AuthorBar author={this.state.author} opinion_posting_date={this.state.opinion.post_date}/>
         <Divider/>
-        <div dangerouslySetInnerHTML={{ __html: this.state.opinion.content }} />
+        {this.state.opinion.content}
       </Container>
     );
   }
@@ -214,7 +208,6 @@ class OpinionDetail extends React.Component {
     const parsed = queryString.parse(props.location.search);
     this.state = {
       dataLoaded: false,
-      current_navigation: "Description",
       id_consultation: parsed.id_consultation,
       id_opinion: parsed.id_opinion,
       consultation_details: {},
@@ -226,19 +219,25 @@ class OpinionDetail extends React.Component {
     var parcours_jury = parseInt(cookies.get("parcours_jury"));
     var new_state=false;
     var new_state_parcours;
-    console.log(parcours_jury)
+
     switch(parcours_jury){
       case constants.CONSULT_UNE_OPINION:
-        new_state=true;
-        new_state_parcours=constants.CONSULT_UNE_OPINION_DETAIL_UN_VALIDE;
+        if(this.state.id_opinion === "0"){
+          new_state=true;
+          new_state_parcours=constants.CONSULT_UNE_OPINION_DETAIL_UN_VALIDE;
+        }
         break;
       case constants.CONSULT_UNE_OPINION_DETAIL_UN_RETOUR:
-        new_state=true;
-        new_state_parcours=constants.CONSULT_UNE_OPINION_DETAIL_DEUX_VALIDE;
+        if(this.state.id_opinion === "1"){
+          new_state=true;
+          new_state_parcours=constants.CONSULT_UNE_OPINION_DETAIL_DEUX_VALIDE;
+        }
         break;
       case constants.CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR:
-        new_state=true;
-        new_state_parcours=constants.CONSULT_UNE_OPINION_DETAIL_TROIS_VALIDE;
+        if(this.state.id_opinion === "2"){
+          new_state=true;
+          new_state_parcours=constants.CONSULT_UNE_OPINION_DETAIL_TROIS_VALIDE;
+        }
         break;
     }
 

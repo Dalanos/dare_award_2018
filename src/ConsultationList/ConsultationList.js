@@ -134,7 +134,7 @@ class ConsultationList extends React.Component {
       consultation_list: [],
       displayed_list: [],
       modal_open: true,
-      parcours_jury: 2,
+      parcours_jury: parseInt(props.cookies.get('parcours_jury')),
     }
     this.getFilteredList = this.getFilteredList.bind(this);
   }
@@ -143,15 +143,42 @@ class ConsultationList extends React.Component {
   componentDidMount() {
     const { cookies } = this.state.cookies;
     var tmp_modal = false;
+    var current_parcours_jury=parseInt(cookies.get('parcours_jury'));
 
-    if(cookies.get('parcours_jury') < 2) {
+    if(cookies.get('parcours_jury') < constants.MODALE_VALIDE) {
       tmp_modal = true;
     }
     this.setState({
       consultation_list: sortByNumber(data.consultation_list_data),
       displayed_list: sortByNumber(data.consultation_list_data),
       modal_open: tmp_modal,
-      parcours_jury: cookies.get('parcours_jury'),
+      parcours_jury: current_parcours_jury,
+    });
+
+    var new_state_jury;
+
+    switch(this.state.parcours_jury){
+      case constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR:
+        new_state_jury=constants.CONSULT_UNE_RETOUR;
+      break;
+      case constants.CONSULT_UNE_OPINION_DETAIL_UN_VALIDE:
+        new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_UN_RETOUR;
+      break;
+      case constants.CONSULT_UNE_OPINION_DETAIL_DEUX_VALIDE:
+        new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR;
+      break;
+      case constants.CONSULT_UNE_OPINION_DETAIL_TROIS_VALIDE:
+        new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR;
+      break;
+      default:
+        new_state_jury = this.state.parcours_jury;
+    }
+
+    const d = new Date();
+    d.setTime(d.getTime() + (constants.ONE_DAY));
+    cookies.set('parcours_jury', new_state_jury ,{expires : d});
+    this.setState({
+      parcours_jury: new_state_jury,
     });
   }
 
@@ -213,10 +240,26 @@ class ConsultationList extends React.Component {
               dimmer="blurring"
               size="large"
               onClose={this.close}
+              style={{
+                height: '50%'
+              }}
             >
-              <Modal.Header>Petit Préambule</Modal.Header>
-              <Modal.Content>
-                <p>Hohoho bitch, trouver texte à mettre</p>
+              <Modal.Header style={{fontSize: '22px'}}>Préambule</Modal.Header>
+              <Modal.Content style={{fontSize: '19px'}}>
+                <p>
+                  Bonjour ! <br/>
+                Bienvenue sur notre projet pour le concours Dare Awards 2018. <br/>
+                Nous avons travaillé sur cette plateforme pour que votre expérience
+                soit la plus interactive possible. Nous allons vous guider tout au long
+                de la présentation, vous n’aurez qu’à cliquer sur les encadrés rouges qui
+                s’afficheront !<br/><br/><br/>
+
+                NB : La plateforme que nous vous proposons étant une version bêta, nous
+                vous remercions de bien suivre les indications. <br/>
+                En cas de problème, vous pouvez nous joindre au : 06 56 84 05 77 ou à l'adresse sami.yacoubi@hec.edu<br/>
+                Vous trouverez également une version texte classique de notre projet (définir l’emplacement de cette version)
+
+                </p>
               </Modal.Content>
               <Modal.Actions>
                 <Button

@@ -19,65 +19,59 @@ import "./GenericCSS.css"
 var images = require.context('../img', true);
 
 const GenericCard = (props) => {
+  var special_situation=false;
+  var style;
+  var link= props.link;
   switch(parseInt(props.parcours_jury)){
-
     case constants.MODALE_VALIDE:
-        var style = {
+        special_situation=true;
+        style = {
           opacity: '0.2',
         };
-        var link= "";
+        link= "";
         if(props.popularity === 9000) {
-          style = {
-            border: 'red',
-            borderStyle: 'solid',
-            borderWidth: 'thick',
-          };
+          style = constants.style;
           link = props.link
         }
-        return (
-          <Card style={style}>
-            <Image src={images(props.image)} as={Link} to={link} />
-            <Card.Content>
-              <Card.Header as={Link} to={link} className="text_alignements_cards">{props.header}</Card.Header>
-              <Card.Meta as={Link} to={link} className="text_alignements_cards">{props.meta}</Card.Meta>
-              <Card.Description className="text_alignements_cards">{props.description}</Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-              <a style={{float: 'left'}}>
-                <Icon name='time' />
-                {props.days_left} jours restants
-              </a>
-              <a style={{float: 'right'}}>
-                <Icon name='fire' />
-                {props.popularity}
-              </a>
-            </Card.Content>
-          </Card>
-        );
     break;
-
+    case constants.CONSULT_UNE_RETOUR:
+        special_situation=true;
+        style = {
+          opacity: '0.2',
+        };
+        link= "";
+        if(props.popularity === 9000) {
+          link = props.link;
+          style = {};
+        }
+        if(props.popularity === 9001) {
+          style = constants.style;
+          link = props.link;
+        }
+    break;
     default:
-        return (
-          <Card >
-            <Image src={images(props.image)} as={Link} to={props.link} />
-            <Card.Content>
-              <Card.Header as={Link} to={props.link} className="text_alignements_cards">{props.header}</Card.Header>
-              <Card.Meta as={Link} to={props.link} className="text_alignements_cards">{props.meta}</Card.Meta>
-              <Card.Description className="text_alignements_cards">{props.description}</Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-              <a style={{float: 'left'}}>
-                <Icon name='time' />
-                {props.days_left} jours restants
-              </a>
-              <a style={{float: 'right'}}>
-                <Icon name='fire' />
-                {props.popularity}
-              </a>
-            </Card.Content>
-          </Card>
-        );
   }
+
+  return (
+    <Card style={special_situation? style : {}}>
+      <Image src={images(props.image)} as={Link} to={link} />
+      <Card.Content>
+        <Card.Header as={Link} to={link} className="text_alignements_cards">{props.header}</Card.Header>
+        <Card.Meta as={Link} to={link} className="text_alignements_cards">{props.meta}</Card.Meta>
+        <Card.Description className="text_alignements_cards">{props.description}</Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <a style={{float: 'left'}}>
+          <Icon name='time' />
+          {props.days_left} jours restants
+        </a>
+        <a style={{float: 'right'}}>
+          <Icon name='fire' />
+          {props.popularity}
+        </a>
+      </Card.Content>
+    </Card>
+  );
 }
 
 const TripleCardGroup = (props) => {
@@ -130,12 +124,12 @@ const TripleCardGroup = (props) => {
 class CardsDashboard extends React.Component {
   constructor(props){
     super(props);
-    console.log(props)
     this.state={
       number_of_cards: 0,
       etape_parcours: props.parcours_jury || 2,
       card_list : [],
     }
+    console.log(this.state)
   }
 
   render () {
