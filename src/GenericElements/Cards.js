@@ -22,7 +22,7 @@ const GenericCard = (props) => {
   var special_situation=false;
   var style;
   var link= props.link;
-  switch(parseInt(props.parcours_jury, 10)){
+  switch(parseInt(props.cookies.get('parcours_jury'), 10)){
     case constants.MODALE_VALIDE:
         special_situation=true;
         style = {
@@ -80,7 +80,7 @@ const GenericCard = (props) => {
         }
     break;
     default:
-      if(parseInt(props.parcours_jury, 10) < constants.CONSULT_UNE_RETOUR){
+      if(parseInt(props.cookies.get('parcours_jury'), 10) < constants.CONSULT_UNE_RETOUR){
         special_situation=true;
         style = {
           opacity: '0.2',
@@ -90,7 +90,7 @@ const GenericCard = (props) => {
           link = props.link;
           style = {};
         }
-      } else if(parseInt(props.parcours_jury, 10) < constants.CONSULT_DEUX_RETOUR) {
+      } else if(parseInt(props.cookies.get('parcours_jury'), 10) < constants.CONSULT_DEUX_RETOUR) {
         special_situation=true;
         style = {
           opacity: '0.2',
@@ -138,7 +138,7 @@ const TripleCardGroup = (props) => {
              link={props.data_card_1.link}
              popularity={props.data_card_1.popularity}
              days_left={props.data_card_1.days_left}
-             parcours_jury={props.parcours_jury}
+             cookies={props.cookies}
            />
          </Grid.Column>
          {props.data_card_2 &&
@@ -151,7 +151,7 @@ const TripleCardGroup = (props) => {
                link={props.data_card_2.link}
                popularity={props.data_card_2.popularity}
                days_left={props.data_card_2.days_left}
-               parcours_jury={props.parcours_jury}
+               cookies={props.cookies}
              />
            </Grid.Column>}
          {props.data_card_3 &&
@@ -164,7 +164,7 @@ const TripleCardGroup = (props) => {
                link={props.data_card_3.link}
                popularity={props.data_card_3.popularity}
                days_left={props.data_card_3.days_left}
-               parcours_jury={props.parcours_jury}
+               cookies={props.cookies}
              />
            </Grid.Column>}
        </Grid.Row>
@@ -177,7 +177,6 @@ class CardsDashboard extends React.Component {
     super(props);
     this.state={
       number_of_cards: 0,
-      etape_parcours: props.parcours_jury || 2,
       card_list : [],
     }
   }
@@ -194,7 +193,7 @@ class CardsDashboard extends React.Component {
               data_card_2={card_list[i-1]}
               data_card_3={card_list[i]}
               key={i}
-              parcours_jury={this.state.etape_parcours}
+              cookies={this.props.cookies}
             />
           );
         }else if (i + 1 === card_list.length) {
@@ -204,7 +203,7 @@ class CardsDashboard extends React.Component {
                 data_card_1={card_list[i-1]}
                 data_card_2={card_list[i]}
                 key={i}
-                parcours_jury={this.state.etape_parcours}
+                cookies={this.props.cookies}
               />
             );
           } else {
@@ -212,7 +211,7 @@ class CardsDashboard extends React.Component {
               <TripleCardGroup
                 data_card_1={card_list[i]}
                 key={i}
-                parcours_jury={this.state.etape_parcours}
+                cookies={this.props.cookies}
               />
             );
           }

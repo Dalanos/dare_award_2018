@@ -29,7 +29,7 @@ export const CONSULT_DEUX_RETOUR = 20;
 export const CONSULT_TROIS_OPINION_ET_FINAL = 21;
 
 export const style = {
-  border: 'red',
+  border: '#31caca',
   borderStyle: 'solid',
   borderWidth: 'thick',
 };

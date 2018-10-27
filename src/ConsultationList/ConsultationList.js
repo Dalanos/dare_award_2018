@@ -147,6 +147,9 @@ class ConsultationList extends React.Component {
     var new_state_jury;
 
     switch(this.state.parcours_jury){
+      case constants.MODALE_VALIDE:
+        new_state_jury=constants.CONSULT_UNE_DESC;
+      break;
       case constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR:
         new_state_jury=constants.CONSULT_UNE_RETOUR;
       break;
@@ -267,7 +270,7 @@ class ConsultationList extends React.Component {
 
 
             <SearchBar callbackFromParent={this.getFilteredList}/>
-            <CardsDashboard card_list={this.state.displayed_list} parcours_jury={this.state.parcours_jury}/>
+            <CardsDashboard card_list={this.state.displayed_list} cookies={this.state.cookies} parcours_jury={this.state.parcours_jury}/>
           </Body>
           <Footer/>
       </React.Fragment>

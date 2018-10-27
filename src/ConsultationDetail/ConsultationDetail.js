@@ -84,6 +84,8 @@ const NavigationBar = props => {
         <Menu.Item
           name='Vote'
           active={props.active === 'Vote'}
+          style={{opacity: '0.4'}}
+          key={3}
         />
       );
     } else {
@@ -93,6 +95,7 @@ const NavigationBar = props => {
           style={parcours_jury === constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR ? constants.style : {}}
           active={props.active === 'Vote'}
           onClick={() => props.onClick("Vote")}
+          key={3}
         />
       );
     }
@@ -163,14 +166,9 @@ const OpinionCard = (props) => {
     const shortened_title = props.opinion_detail.title.substring(0, 45);
     const shortened_content = "";
 
-    var style = {
-      border: 'red',
-      borderStyle: 'solid',
-      borderWidth: 'thick',
-    };
     if(props.clickable){
       return (
-        <Item className="encadrer_bloc" style={props.highlighted? style : {}}>
+        <Item className="encadrer_bloc" style={props.highlighted? constants.style : {}}>
           <Item.Image
             size='tiny'
             src={images(props.author_detail.photo)}
@@ -200,7 +198,7 @@ const OpinionCard = (props) => {
       );
     } else {
       return (
-        <Item className="encadrer_bloc" style={props.highlighted? style : {opacity: '0.5'}}>
+        <Item className="encadrer_bloc" style={props.highlighted? constants.style : {opacity: '0.5'}}>
           <Item.Image
             size='tiny'
             src={images(props.author_detail.photo)}
@@ -245,98 +243,117 @@ class OpinionListAsCard extends React.Component  {
     const user_list = this.props.state.user_list || {};
 
     var render = [];
+
     for (var i = 0; i < number_of_opinions; i++) {
       const current_opinion = opinion_list[i];
-      switch(parseInt(this.props.state.cookies.get('parcours_jury'), 10)){
-        case constants.CONSULT_DEUX_OPINION :
-        case constants.CONSULT_UNE_OPINION :
-        {
-          if(i === 0) {
-            render.push(
-              <OpinionCard
-                id_consultation={id_consultation}
-                opinion_detail={current_opinion}
-                author_detail={user_list[current_opinion.id_author]}
-                clickable={true}
-                highlighted={true}
-                key={i}/>
-            );
-          } else {
-            render.push(
-              <OpinionCard
-                id_consultation={id_consultation}
-                opinion_detail={current_opinion}
-                author_detail={user_list[current_opinion.id_author]}
-                clickable={false}
-                highlighted={false}
-                key={i}/>
-            );
-          }
-        }
-        break;
-        case constants.CONSULT_DEUX_OPINION_DETAIL_UN_RETOUR:
-        case constants.CONSULT_UNE_OPINION_DETAIL_UN_RETOUR:
-        {
-            if(i === 0) {
+      //Verification qu'on est bien dans la bonne consult pour afficher les highlight
+      if((id_consultation === 0 &&
+        parseInt(this.props.state.cookies.get('parcours_jury')) < constants.CONSULT_UNE_RETOUR) ||
+        (id_consultation === 1 &&
+          parseInt(this.props.state.cookies.get('parcours_jury')) < constants.CONSULT_DEUX_RETOUR)){
+
+            switch(parseInt(this.props.state.cookies.get('parcours_jury'), 10)){
+              case constants.CONSULT_DEUX_OPINION :
+              case constants.CONSULT_UNE_OPINION :
+              {
+                // C'EST LA Qu(EST LE BUG) - TIENT PAS COMPTE DU NUMERO DE CONSULT
+                if(i === 0) {
+                  render.push(
+                    <OpinionCard
+                      id_consultation={id_consultation}
+                      opinion_detail={current_opinion}
+                      author_detail={user_list[current_opinion.id_author]}
+                      clickable={true}
+                      highlighted={true}
+                      key={i}/>
+                  );
+                } else {
+                  render.push(
+                    <OpinionCard
+                      id_consultation={id_consultation}
+                      opinion_detail={current_opinion}
+                      author_detail={user_list[current_opinion.id_author]}
+                      clickable={false}
+                      highlighted={false}
+                      key={i}/>
+                  );
+                }
+              }
+              break;
+              case constants.CONSULT_DEUX_OPINION_DETAIL_UN_RETOUR:
+              case constants.CONSULT_UNE_OPINION_DETAIL_UN_RETOUR:
+              {
+                  if(i === 0) {
+                    render.push(
+                      <OpinionCard
+                        id_consultation={id_consultation}
+                        opinion_detail={current_opinion}
+                        author_detail={user_list[current_opinion.id_author]}
+                        clickable={true}
+                        highlighted={false}
+                        key={i}/>
+                    );
+                  } else if (i === 1){
+                    render.push(
+                      <OpinionCard
+                        id_consultation={id_consultation}
+                        opinion_detail={current_opinion}
+                        author_detail={user_list[current_opinion.id_author]}
+                        clickable={true}
+                        highlighted={true}
+                        key={i}/>
+                    );
+                  }  else {
+                    render.push(
+                      <OpinionCard
+                        id_consultation={id_consultation}
+                        opinion_detail={current_opinion}
+                        author_detail={user_list[current_opinion.id_author]}
+                        clickable={false}
+                        highlighted={false}
+                        key={i}/>
+                    );
+                  }
+                }
+              break;
+              case constants.CONSULT_DEUX_OPINION_DETAIL_DEUX_RETOUR:
+              case constants.CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR:
+              {
+                if(i === 2) {
+                  render.push(
+                    <OpinionCard
+                      id_consultation={id_consultation}
+                      opinion_detail={current_opinion}
+                      author_detail={user_list[current_opinion.id_author]}
+                      clickable={true}
+                      highlighted={true}
+                      key={i}/>
+                  );
+                } else {
+                  render.push(
+                    <OpinionCard
+                      id_consultation={id_consultation}
+                      opinion_detail={current_opinion}
+                      author_detail={user_list[current_opinion.id_author]}
+                      clickable={true}
+                      highlighted={false}
+                      key={i}/>
+                  );
+                }
+              }
+              break;
+              default:
               render.push(
                 <OpinionCard
                   id_consultation={id_consultation}
                   opinion_detail={current_opinion}
                   author_detail={user_list[current_opinion.id_author]}
                   clickable={true}
-                  highlighted={false}
-                  key={i}/>
-              );
-            } else if (i === 1){
-              render.push(
-                <OpinionCard
-                  id_consultation={id_consultation}
-                  opinion_detail={current_opinion}
-                  author_detail={user_list[current_opinion.id_author]}
-                  clickable={true}
-                  highlighted={true}
-                  key={i}/>
-              );
-            }  else {
-              render.push(
-                <OpinionCard
-                  id_consultation={id_consultation}
-                  opinion_detail={current_opinion}
-                  author_detail={user_list[current_opinion.id_author]}
-                  clickable={false}
                   highlighted={false}
                   key={i}/>
               );
             }
-          }
-        break;
-        case constants.CONSULT_DEUX_OPINION_DETAIL_DEUX_RETOUR:
-        case constants.CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR:
-        {
-          if(i === 2) {
-            render.push(
-              <OpinionCard
-                id_consultation={id_consultation}
-                opinion_detail={current_opinion}
-                author_detail={user_list[current_opinion.id_author]}
-                clickable={true}
-                highlighted={true}
-                key={i}/>
-            );
-          } else {
-            render.push(
-              <OpinionCard
-                id_consultation={id_consultation}
-                opinion_detail={current_opinion}
-                author_detail={user_list[current_opinion.id_author]}
-                clickable={true}
-                highlighted={false}
-                key={i}/>
-            );
-          }
-        }
-        break;
-        default:
+      } else {
         render.push(
           <OpinionCard
             id_consultation={id_consultation}
@@ -431,7 +448,7 @@ class ConsultationDetail extends React.Component {
     super(props);
     const queryString = require('query-string');
     const parsed = queryString.parse(props.location.search);
-
+    console.log(props)
     this.state = {
       current_navigation: "Description",
       cookies: props,
@@ -450,39 +467,45 @@ class ConsultationDetail extends React.Component {
         organisator_photo: data.authors_list[consultation_info.consultation_organisator_id].photo,
       });
 
-      var new_state_jury;
+      var new_state_jury = parseInt(this.state.cookies.cookies.get('parcours_jury'), 10);
+      var tmp_view= "Description";
       switch(this.state.parcours_jury){
         case constants.MODALE_VALIDE:
           new_state_jury=constants.CONSULT_UNE_DESC;
         break;
         case constants.CONSULT_UNE_OPINION_DETAIL_UN_VALIDE:
           new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_UN_RETOUR;
+          this.handleNavigationClick('Opinions');
         break;
         case constants.CONSULT_UNE_OPINION_DETAIL_DEUX_VALIDE:
           new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR;
+          this.handleNavigationClick('Opinions');
         break;
         case constants.CONSULT_UNE_OPINION_DETAIL_TROIS_VALIDE:
           new_state_jury=constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR;
+          this.handleNavigationClick('Opinions');
         break;
 
         case constants.CONSULT_UNE_RETOUR:
-          new_state_jury=constants.CONSULT_DEUX_OPINION;
+          if(this.state.id === 1) new_state_jury=constants.CONSULT_DEUX_OPINION;
         break;
         case constants.CONSULT_DEUX_OPINION_DETAIL_UN_VALIDE:
           new_state_jury=constants.CONSULT_DEUX_OPINION_DETAIL_UN_RETOUR;
+          this.handleNavigationClick('Opinions');
         break;
         case constants.CONSULT_DEUX_OPINION_DETAIL_DEUX_VALIDE:
           new_state_jury=constants.CONSULT_DEUX_OPINION_DETAIL_DEUX_RETOUR;
+          this.handleNavigationClick('Opinions');
         break;
         case constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_VALIDE:
           new_state_jury=constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR;
+          this.handleNavigationClick('Opinions');
         break;
 
         case constants.CONSULT_DEUX_RETOUR:
-          new_state_jury=constants.CONSULT_TROIS_OPINION_ET_FINAL;
+          if(this.state.id === 2) new_state_jury=constants.CONSULT_TROIS_OPINION_ET_FINAL;
         break;
         default:
-          new_state_jury = this.state.parcours_jury;
       }
 
         const { cookies } = this.state.cookies;
