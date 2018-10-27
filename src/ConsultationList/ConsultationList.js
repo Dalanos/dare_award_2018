@@ -240,20 +240,20 @@ class ConsultationList extends React.Component {
                 height: '50%'
               }}
             >
-              <Modal.Header style={{fontSize: '22px'}}>Préambule</Modal.Header>
+              <Modal.Header style={{fontSize: '22px'}}>Foreword</Modal.Header>
               <Modal.Content style={{fontSize: '19px'}}>
                 <p>
-                  Bonjour ! <br/>
-                Bienvenue sur notre projet pour le concours Dare Awards 2018. <br/>
-                Nous avons travaillé sur cette plateforme pour que votre expérience
-                soit la plus interactive possible. Nous allons vous guider tout au long
-                de la présentation, vous n’aurez qu’à cliquer sur les encadrés rouges qui
-                s’afficheront !<br/><br/><br/>
+                  Hey there! <br/>
+                Welcome to our project for the Dare Award 2018 Challenge. <br/>
+                We have been developing this platform these last three weeks to make your experience
+                as interactive as possible. We will be guiding you during the presentation, you’ll
+                just have to click on the highlighted elements!<br/><br/><br/>
 
-                NB : La plateforme que nous vous proposons étant une version bêta, nous
-                vous remercions de bien suivre les indications. <br/>
-                En cas de problème, vous pouvez nous joindre au : 06 56 84 05 77 ou à l'adresse sami.yacoubi@hec.edu<br/>
-                Vous trouverez également une version texte classique de notre projet (définir l’emplacement de cette version)
+                P.S: The platform that you are on is a very early prototype of what we have in mind,
+                so it is incomplete and there are probably a few bugs. But if you follow the
+                highlighted path, you should be all right.  <br/>
+                But if something goes wrong, you can join us at 06 56 84 05 77 or sami.yacoubi@hec.edu.<br/>
+                We’ll also add a regular (and boring) version of our presentation in an additional document.
 
                 </p>
               </Modal.Content>

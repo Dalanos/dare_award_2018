@@ -101,11 +101,11 @@ const NavigationBar = props => {
     }
 
     return (
-      <Menu pointing secondary >
+      <Menu pointing secondary>
         <Menu.Item
           name='Description'
           active={props.active === 'Description'}
-          onClick={() => props.onClick("Description")} />
+          onClick={() => props.onClick("Description")}/>
         <Menu.Item style={parcours_jury === constants.CONSULT_UNE_DESC ? constants.style : {}}
           name='Opinions'
           active={props.active === 'Opinions'}

@@ -46,8 +46,8 @@ class HeaderBar extends React.Component {
         <Menu fixed='top' className="header_bar" >
           <Container>
             <Menu.Item header className="header_bar_hide_border_left_main_button">
-              <Image size='mini' src={images("./logo.png")} style={{ marginRight: '1.5em' }} />
-              Aurora
+              <Image size='mini' src={images("./column.png")} style={{ marginRight: '1.5em' }} />
+              Pnyx
             </Menu.Item>
             {parseInt(this.state.cookies.get('parcours_jury'), 10) >= constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR ?
               retour_liste_sujet : retour_desactivé}

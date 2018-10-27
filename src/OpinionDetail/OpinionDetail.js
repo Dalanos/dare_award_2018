@@ -22,6 +22,7 @@ import { withCookies } from 'react-cookie';
 import HeaderBar from "./../GenericElements/HeaderBar"
 import Footer from "./../GenericElements/Footer"
 import Body from "./../GenericElements/Body"
+import TopPanel from "./../GenericElements/TopPanel"
 
 import "./../ConsultationDetail/ConsultationDetail.css"
 import "./OpinionDetail.css"
@@ -43,12 +44,13 @@ const getDaysSincePosting = ( currenDate, postingDate ) => {
 }
 
 const InfoBar = props => {
+  var image = props.dataLoaded ? props.info.user_list[props.info.consultation_organisator_id] : "./profile_pic.jpg";
   return (
     <Container>
       <Grid>
         <Grid.Row stretched>
           <Grid.Column width={3}>
-            <Image src={images(props.info.organisator_photo)} size='tiny' circular/>
+            <Image src={images("./profile_pic.jpg")} size='tiny' circular/>
           </Grid.Column>
           <Grid.Column width={10} textAlign='left'>
             <h3>{props.info.consultation_details.consultation_name}</h3>
@@ -304,6 +306,7 @@ class OpinionDetail extends React.Component {
       consultation_pitch_sentence: consult_detail.consultation_pitch_sentence,
       consultation_organisator_id: consult_detail.consultation_organisator_id,
       days_left: consult_detail.days_left,
+      detail_image: consult_detail.detail_image,
     }
     this.setState({
       consultation_details: tmp_state,
@@ -311,6 +314,7 @@ class OpinionDetail extends React.Component {
       user_list: data.authors_list,
       opinion_details: opinion_details,
     });
+
 
 
   }
@@ -326,11 +330,12 @@ class OpinionDetail extends React.Component {
       display = <WaitingDisplay/>
     }
     return (
+
       <React.Fragment>
         <HeaderBar/>
+        <TopPanel
+          image={this.state.consultation_details.detail_image}/>
         <Body>
-          {/* <TopPanel
-            image={this.state.consultation_details.detail_image}/> */}
           <InfoBar info={this.state}/>
           <ReturnBar consultation_id={this.state.id_consultation} cookies={this.state.cookies}/>
           {display}

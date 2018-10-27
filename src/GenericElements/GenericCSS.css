@@ -32,9 +32,11 @@
 /* BODY */
 
 .body {
-  margin-top: 3em!important;
+  margin-top: 1em!important;
   margin-bottom: 3em!important;
   width: 100%!important;
+  text-align: justify!important;
+  font-size: 15px!important;
 }
 
 

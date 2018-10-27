@@ -6,9 +6,9 @@ import {
 export const consultation_list_data =
 [
   {
-    image: "./consultation_vignette/1_Election des délégués du personnel - 2018.jpeg",
-    header: "Présentation globale",
-    description: "Venez découvrir les raisons et le coeur de notre solution",
+    image: "./idea.jpeg",
+    header: "The idea",
+    description: "Discover our idea and the reasons behind it",
     link:'/consultation_detail?id=0',
     popularity: 9000,
     days_left: 1,
@@ -121,78 +121,95 @@ export const authors_list = [
 
 export const consultation_detail_list_data = [
   {
-    consultation_name: "Présentation globale",
-    consultation_pitch_sentence: "Venez découvrir les raisons et le coeur de notre solution",
+    consultation_name: "The idea",
+    consultation_pitch_sentence: "Discover our idea and the reasons behind it",
     consultation_description: [
       <React.Fragment>
-        <p style={{fontSize: '25px'}}> Vision </p>
+        <p style={{fontSize: '25px'}}> <b> Observation </b> </p>
         <p>
-          Aujourd’hui, les institutions politiques françaises n’impliquent que très
-          faiblement les citoyens. Dans la vie des grandes entreprises, c’est plus ou
-           moins pareil : les dirigeants décident des orientations stratégiques de
-           l’entreprise, tandis que chaque employé effectue son travail sans avoir
-           véritablement une vision d’ensemble ou un impact sur le développement de
-           la société. On observe un réel désengagement des citoyens comme des
-           employés. La désaffection des français pour la vie politique s’explique
-           par l’impression que leurs actions n’ont d’impact direct. Les grandes
-           entreprises françaises ont quant à elles du mal à embaucher et retenir
-           les jeunes talents au sein de leurs rangs, car ces nouvelles générations
-           sont en quête d’un sens que ces sociétés ne sont pas en mesure de fournir,
-            tant elles peinent à développer un sentiment d’appartenance à leur
-            communauté et à impliquer réellement leurs collaborateurs dans la vie
-            organisationnelle.
-        </p>
-        <p>
-          Nous pensons que les nouvelles générations, en quête de sens, vont
-          s’emparer de cette problématique pour la rendre centrale : la quête de
-          sens des individus va devenir de plus en plus généralisée, ils vont
-          progressivement chercher à vraiment avoir un impact et deviendront plus
-           acteurs que spectateurs.
-        </p>
-        <p>
-          Nous croyons que nous avons tout à gagner à passer à un modèle plus
-          basé sur la consultation, d’autant plus que les entreprises, et les
-          institutions en général, vont devoir évoluer pour perdurer : cela
-          s’annonce long pour le domaine politique, car cela implique une refonte
-           de notre fonctionnement politique, mais peut déjà s’amorcer dans
-           l’entreprise, lieu que les citoyens côtoient tous les jours et dans
-           lequel ils s’impliquent.
+          <div>
+            We made two main observations:
+          </div>
+          <List bulleted>
+            <List.Item>In our current society, the public institutions don’t really
+            involve the citizen. To get involved personally demands lot of time and
+            contacts. Our system of representation hasn’t really changed in a century
+             (vote for a house representant every 5 years or so) although our technology
+              allows us to be directly informed and implicated. All this combined can
+              partially explain the French’s disinterest in politics. </List.Item>
+            <List.Item>At the same time, traditional companies are in turmoil as well.
+             France is the european country with the lowest percentage of workers
+             happy about their jobs. Big companies have trouble engaging their
+             employees, and can’t keep the new recruits, especially the millenials.
+              The reason: a desengagement of the employees who don’t see their
+              impact in the company. New generations are in search of meaning and
+              feeling of belonging to a community, and to something that is greater
+              than just “selling products, making money”, something that big companies
+              can rarely provide. Furthermore, they have troubles keeping up their
+              level of innovation with start-ups, and can’t really attract the talents
+              necessary to do so.
+            </List.Item>
+          </List>
+          <br/>
+          <b>
+          We firmly believe that this can and must change.
+          </b>
         </p>
         <br/><br/>
-        <p style={{fontSize: '25px'}}> Constat </p>
-        <p>
-          Les grandes entreprises ont de plus en plus de mal à séduire les
-          jeunes et à embaucher de nouvelles recrues, ainsi qu’à retenir leurs
-           talents. En cause : un désengagement des employés qui ne voient pas
-           leur impact direct dans l’entreprise. Les nouvelles générations sont
-           à la recherche de sens, ce que les grandes entreprises ne peuvent que
-           rarement leur donner.
-        </p>
-        <p>
-          Par ailleurs, pour continuer à maintenir leur niveau d’innovation
-          face à la concurrence des start-ups, les entreprises doivent innover
-          sans cesse et donc se reposer sur des profils innovants, en s’attachant
-           à les retenir au sein de la société.
-        </p>
-        <p style={{fontSize: '25px'}}> Solution en une phrase </p>
-        <p>
-          Notre solution : une plateforme de consultation et vote en ligne, à
-          disposition des dirigeants d’entreprise, pour leur permettre de consulter
-           leurs salariés sur des sujets divers telles que les futures orientations
-           stratégiques de la société.
-        </p>
-        <p>
-          Pour notre candidature aux Dare Awards 2018, nous avons choisi de
-          présenter notre projet sous la forme de notre plateforme. Vous trouverez
-          l’idée principale de chaque sujet dans l’onglet description, qui sera
-          approfondie dans l’onglet Opinions.
-        </p>
+
+        <p style={{fontSize: '25px'}}> <b> Our conclusion </b> </p>
+          <div>
+          For us, engagement is the key problem here. Whether in politics or in
+          professional life, the current system is made so that the individual has
+           little or no feeling of having an impact. This new generation of workers
+            is in search of meaning and impact in their life, and want to be actor of
+             change, not just spectator. And they’ll need tools to make it happen.
+          </div>
+          <div>
+            We are confident that these issues could be solved through a more
+            consultative system. This is something that has been growing in the
+            last few years, and has been getting more and more traction.
+          </div>
+          <div>
+            Of course, it will take a long time for it to happen in politics
+            (although you can already see a few examples here and there), but
+            it can already be started in companies. A consultative system would
+             help the employees feeling valued and useful, therefore increasing
+             engagement, smart business decisions and public image. And this would
+              also help for our first observation. If a citizen uses a consultative
+              system in his workplace, where he goes everyday and is engaged, he
+               will quickly ask himself why such a system isn’t implemented in
+               his public life.
+          </div>
+          <p>
+          Whether they like it or not, companies and public institutions will
+          have to change to take into account the aspirations of their employees
+           and citizens. And it is starting right now. All we need now, is a tool.
+          </p>
+          <p style={{fontSize: '25px'}}> <b> Solution in one sentence </b> </p>
+          <p>
+            An online consultative and voting platform, available for company
+            executive management, allowing them to consult their employees on a
+            wide variety of topics going from strategic decisions, to day-to-day
+            improvements.
+          </p>
+          <p>
+            <b>
+            For our application for the Dare Award Challenge, we choose to
+            present our project with this current form, being a first idea of
+            what this platform could be for an employee.
+            So you’ll find our presentation under the form of 3 consultations,
+            with an additional two examples unlocked at the end of the tour.
+            <br/>
+            We hope you’ll enjoy our project!
+            </b>
+          </p>
       </React.Fragment>
     ],
     consultation_organisator_id: 0,
     days_left: 1,
     popularity: 9000,
-    detail_image: "./profile_pic.jpg",
+    detail_image: "./Pich-Idea-Bulb.jpeg",
   },
   {
     consultation_name: "Implémentation",
