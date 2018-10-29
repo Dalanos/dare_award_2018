@@ -58,7 +58,7 @@ const InfoBar = props => {
             <i>{props.info.consultation_details.consultation_pitch_sentence}</i>
           </Grid.Column>
           <Grid.Column width={3}>
-            {props.info.consultation_details.days_left} jour(s) restant(s) avant l'ouverture des votes
+            {props.info.consultation_details.days_left} days(s) left before the opening of the votes
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -78,7 +78,7 @@ const ReturnBar = props => {
     <Menu pointing secondary >
       <Menu.Item
         style={highlighted? constants.style : {}}
-        name= " Retour à la consultation"
+        name= " Return to consultation"
         icon='arrow left'
         active={false}
         as={Link}
@@ -102,7 +102,7 @@ const AuthorBar = props => {
         <Item.Image size='tiny' circular src={images(props.author.photo)} />
         <Item.Content className="author_bar_alignement" verticalAlign="middle">
           <Item.Header as='a'>{props.author.first_name + " " + props.author.last_name}</Item.Header>
-          <Item.Meta>Poste et département</Item.Meta>
+          <Item.Meta>Position and department</Item.Meta>
           <Item.Extra>{"Posté il y a " + getDaysSincePosting(new Date(), new Date(props.opinion_posting_date)) + " jours"}</Item.Extra>
         </Item.Content>
       </Item>
@@ -111,71 +111,38 @@ const AuthorBar = props => {
 }
 
 class CommentFeed extends React.Component {
+
   render() {
+    var render = [];
+    if(this.props.state.dataLoaded) {
+      var i=0;
+      for(i=0; i< this.props.state.opinion_details.comments.number_of_comments; i++) {
+        var commentaire = this.props.state.opinion_details.comments.comments_list[i];
+        render.push(
+          <Comment key={i}>
+            <Comment.Avatar src={images(data.authors_list[commentaire.id_author].photo)} />
+            <Comment.Content>
+              <Comment.Author as='a'>{data.authors_list[commentaire.id_author].first_name + " "+
+                      data.authors_list[commentaire.id_author].last_name}</Comment.Author>
+              <Comment.Metadata>
+                <div>Today at 5:42PM</div>
+              </Comment.Metadata>
+              <Comment.Text>{commentaire.comment}</Comment.Text>
+              <Comment.Actions>
+                <Comment.Action>Reply</Comment.Action>
+              </Comment.Actions>
+            </Comment.Content>
+          </Comment>
+        );
+      }
+    }
     return(
       <Comment.Group>
         <Header as='h3' dividing>
           Comments
         </Header>
 
-        <Comment>
-          <Comment.Avatar src={images(data.authors_list[0].photo)} />
-          <Comment.Content>
-            <Comment.Author as='a'>Matt</Comment.Author>
-            <Comment.Metadata>
-              <div>Today at 5:42PM</div>
-            </Comment.Metadata>
-            <Comment.Text>How artistic!</Comment.Text>
-            <Comment.Actions>
-              <Comment.Action>Reply</Comment.Action>
-            </Comment.Actions>
-          </Comment.Content>
-        </Comment>
-
-        <Comment>
-          <Comment.Avatar src={images(data.authors_list[0].photo)} />
-          <Comment.Content>
-            <Comment.Author as='a'>Elliot Fu</Comment.Author>
-            <Comment.Metadata>
-              <div>Yesterday at 12:30AM</div>
-            </Comment.Metadata>
-            <Comment.Text>
-              <p>This has been very useful for my research. Thanks as well!</p>
-            </Comment.Text>
-            <Comment.Actions>
-              <Comment.Action>Reply</Comment.Action>
-            </Comment.Actions>
-          </Comment.Content>
-          <Comment.Group>
-            <Comment>
-              <Comment.Avatar src={images(data.authors_list[0].photo)} />
-              <Comment.Content>
-                <Comment.Author as='a'>Jenny Hess</Comment.Author>
-                <Comment.Metadata>
-                  <div>Just now</div>
-                </Comment.Metadata>
-                <Comment.Text>Elliot you are always so right :)</Comment.Text>
-                <Comment.Actions>
-                  <Comment.Action>Reply</Comment.Action>
-                </Comment.Actions>
-              </Comment.Content>
-            </Comment>
-          </Comment.Group>
-        </Comment>
-
-        <Comment>
-          <Comment.Avatar src={images(data.authors_list[0].photo)} />
-          <Comment.Content>
-            <Comment.Author as='a'>Joe Henderson</Comment.Author>
-            <Comment.Metadata>
-              <div>5 days ago</div>
-            </Comment.Metadata>
-            <Comment.Text>Dude, this is awesome. Thanks so much</Comment.Text>
-            <Comment.Actions>
-              <Comment.Action>Reply</Comment.Action>
-            </Comment.Actions>
-          </Comment.Content>
-        </Comment>
+        {render}
 
         <Form reply>
           <Form.TextArea />
@@ -184,6 +151,7 @@ class CommentFeed extends React.Component {
       </Comment.Group>
     );
   }
+
 }
 
 class OpinionPanel extends React.Component {
@@ -338,8 +306,11 @@ class OpinionDetail extends React.Component {
         <Body>
           <InfoBar info={this.state}/>
           <ReturnBar consultation_id={this.state.id_consultation} cookies={this.state.cookies}/>
-          {display}
-          <CommentFeed/>
+          <Container>
+            {display}
+            <CommentFeed state={this.state}/>
+          </Container>
+
         </Body>
         <Footer/>
       </React.Fragment>

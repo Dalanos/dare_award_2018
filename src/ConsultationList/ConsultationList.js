@@ -82,21 +82,21 @@ class SearchBar extends React.Component {
         <Button
           icon='star'
           size="large"
-          content='Favoris (Désactivé)'
+          content='Favorites (Deactivated)'
           className={this.state.searchDetails.favorite ?
             "button_search favorite button_favorite_clicked" : "button_search favorite "}
           onClick={this.handleClick.bind(this, "Favoris")}/>
           <Button
             icon='fire'
             size="large"
-            content='Populaires'
+            content='Popular'
             className={this.state.searchDetails.popular ?
               "button_search popular button_popular_clicked" : "button_search popular "}
             onClick={this.handleClick.bind(this, "Populaires")}/>
             <Button
               icon='deaf'
               size="large"
-              content='Avec vote'
+              content='With vote'
               className={this.state.searchDetails.vote ?
                 "button_search vote button_vote_clicked" : "button_search vote "}
               onClick={this.handleClick.bind(this, "Votes")}/>
@@ -147,9 +147,6 @@ class ConsultationList extends React.Component {
     var new_state_jury;
 
     switch(this.state.parcours_jury){
-      case constants.MODALE_VALIDE:
-        new_state_jury=constants.CONSULT_UNE_DESC;
-      break;
       case constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR:
         new_state_jury=constants.CONSULT_UNE_RETOUR;
       break;
@@ -223,8 +220,8 @@ class ConsultationList extends React.Component {
       <React.Fragment>
           <HeaderBar/>
           <TopPanel
-            title="Liste des sujets disponibles"
-            subtitle="Parcourez les opinions de votre entreprise"
+            title="List of availables consultations"
+            subtitle="Browse the opinions of your company"
             image={constants.IMAGE_BRAINSTORMING}/>
           <Body>
 
@@ -246,7 +243,8 @@ class ConsultationList extends React.Component {
                   Hey there! <br/>
                 Welcome to our project for the Dare Award 2018 Challenge. <br/>
                 We have been developing this platform these last three weeks to make your experience
-                as interactive as possible. We will be guiding you during the presentation, you’ll
+                as interactive as possible. It is a early stage reprensentation of our solution.
+                We will be guiding you during the presentation, you’ll
                 just have to click on the highlighted elements!<br/><br/><br/>
 
                 P.S: The platform that you are on is a very early prototype of what we have in mind,
@@ -263,7 +261,7 @@ class ConsultationList extends React.Component {
                   positive
                   labelPosition='right'
                   icon='checkmark'
-                  content="C'est parti!"
+                  content="Let's go!"
                 />
               </Modal.Actions>
             </Modal>

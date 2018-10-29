@@ -114,7 +114,7 @@ const GenericCard = (props) => {
       <Card.Content extra>
         <a style={{float: 'left'}}>
           <Icon name='time' />
-          {props.days_left} jours restants
+          {props.days_left} day(s) left
         </a>
         <a style={{float: 'right'}}>
           <Icon name='fire' />

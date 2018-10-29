@@ -43,7 +43,7 @@ const InfoBar = props => {
             <i>{props.info.consultation_details.consultation_pitch_sentence}</i>
           </Grid.Column>
           <Grid.Column width={3}>
-            {props.info.consultation_details.days_left} jour(s) restant(s) avant l'ouverture des votes
+            {props.info.consultation_details.days_left} days(s) left before the opening of the votes
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -61,16 +61,51 @@ const DescriptionView = props => {
 };
 
 const VoteView = props => {
-  console.log('On est dans le VoteView')
+
   if(parseInt(props.cookies.get('parcours_jury'), 10) === constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR){
     const d = new Date();
     d.setTime(d.getTime() + (constants.ONE_DAY));
     props.cookies.set('parcours_jury', constants.CONSULT_DEUX_VOTE_VALIDE ,{expires : d})
   }
+  var question;
+  switch (props.id_consultation) {
+    case 0:
+        question="So, now that you've seen our project, do you believe in it?";
+      break;
+    case 1:
+        question="So, with all that said, do you plan to vote for us?";
+      break;
+    case 2:
+        question='Best team ever, right?';
+      break;
+    case 3:
+        question='[Find question]';
+      break;
+    case 4:
+        question='[Find question]';
+      break;
+    default:
+      question="This is a question to ask to the coworkers";
+
+  }
 
   return (
-    <Container>
-      Hello my beauty
+    <Container style={{textAlign: 'center'}}>
+      <br/>
+      <br/>
+      <h2>
+        {question}
+      </h2>
+      <br/><br/>
+      <Button.Group fluid>
+        <Button>Yes</Button>
+        <Button.Or />
+        <Button>No</Button>
+        <Button.Or />
+        <Button>No opinion</Button>
+      </Button.Group>
+      <br/><br/><br/><br/>
+      <Button positive size='huge'>Vote!</Button>
     </Container>
   )
 };
@@ -119,17 +154,17 @@ const NavigationBar = props => {
 const SearchBlock = props => {
   return (
     <Grid.Column width={3} className="encadrer_bloc">
-      Filtres:
+      Filters:
       <Form>
         <Form.Field>
-          <label>Titre</label>
-          <input placeholder='First Name' />
+          <label>Title</label>
+          <input placeholder='Title' />
         </Form.Field>
         <Form.Field>
-          <label>Auteur</label>
-          <input placeholder='Last Name' />
+          <label>Author</label>
+          <input placeholder='Author' />
         </Form.Field>
-        <Button type='submit'>Desactivé</Button>
+        <Button type='submit'>Deactivated</Button>
       </Form>
     </Grid.Column>
   )
@@ -141,9 +176,10 @@ const Reactions = props => {
       <Card className="reactions_box">
         <Card.Content>
           <Card.Header>Reactions</Card.Header>
-          <Card.Meta>Que pensez vous de cette consultation?</Card.Meta>
+          <Card.Meta>What do you think of this subject?</Card.Meta>
           <Card.Description>
-            Imaginer un visuel qui permet de mesurer des Reactions
+            Imagine a badass visual showing at snapshot of the company's mood
+            about the subject
           </Card.Description>
         </Card.Content>
         <Card.Content extra>

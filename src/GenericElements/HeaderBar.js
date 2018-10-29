@@ -36,10 +36,10 @@ class HeaderBar extends React.Component {
         parseInt(this.state.cookies.get('parcours_jury'), 10) === constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR ||
         parseInt(this.state.cookies.get('parcours_jury'), 10) === constants.CONSULT_DEUX_VOTE_VALIDE
       ? constants.style : []}>
-      Liste des sujets</Menu.Item>
+      Consultation List</Menu.Item>
     ]
     var retour_desactivé = [
-      <Menu.Item key={1}>Liste des sujets (Desactivé)</Menu.Item>
+      <Menu.Item key={1}>Consutlation List (Deactivated)</Menu.Item>
     ]
     return(
       <div>
@@ -55,9 +55,9 @@ class HeaderBar extends React.Component {
               <Image size='mini' src={images("./profile_pic.jpg")}  circular />
             </Menu.Item>
             <Dropdown item simple text="Jury Dare Award">
-              <Dropdown.Menu>
-                <Dropdown.Item>Mon compte (Désactivé)</Dropdown.Item>
-                <Dropdown.Item >Déconnexion (Désactivé)</Dropdown.Item>
+              <Dropdown.Menu className="header_bar_dropdown_menu">
+                <Dropdown.Item>My Account (Deactivated)</Dropdown.Item>
+                <Dropdown.Item >Sign out (Deactivated)</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Container>

@@ -7,7 +7,7 @@ export const consultation_list_data =
 [
   {
     image: "./idea.jpeg",
-    header: "The idea",
+    header: "Our idea",
     description: "Discover our idea and the reasons behind it",
     link:'/consultation_detail?id=0',
     popularity: 9000,
@@ -121,7 +121,7 @@ export const authors_list = [
 
 export const consultation_detail_list_data = [
   {
-    consultation_name: "The idea",
+    consultation_name: "Our idea",
     consultation_pitch_sentence: "Discover our idea and the reasons behind it",
     consultation_description: [
       <React.Fragment>
@@ -137,7 +137,7 @@ export const consultation_detail_list_data = [
              (vote for a house representant every 5 years or so) although our technology
               allows us to be directly informed and implicated. All this combined can
               partially explain the French’s disinterest in politics. </List.Item>
-            <List.Item>At the same time, traditional companies are in turmoil as well.
+            <List.Item>At the same time, traditional companies are in turmoil.
              France is the european country with the lowest percentage of workers
              happy about their jobs. Big companies have trouble engaging their
              employees, and can’t keep the new recruits, especially the millenials.
@@ -200,6 +200,11 @@ export const consultation_detail_list_data = [
             what this platform could be for an employee.
             So you’ll find our presentation under the form of 3 consultations,
             with an additional two examples unlocked at the end of the tour.
+            <br/>
+            <br/>
+            You are now in the Description part of a consultation, usually written
+            by the executive management, and sets the foundation of the discussion.
+            You can now go to Opinions, to check out what people are saying!
             <br/>
             We hope you’ll enjoy our project!
             </b>
@@ -283,143 +288,129 @@ export const consultation_id_0_opinions_details = [
   {
     id: 0,
     id_author: 1,
-    title: "L'offre / La solution",
+    title: "Solution",
     content: [
       <React.Fragment>
-        <p>
-          XXX est une plateforme SaaS permettant à la direction d'une
-          entreprise d'interagir avec ses employés et de les consulter sur
-          les questions stratégiques de l'entreprise (élections, changement
-            de stratégie, réduction de coûts, QVT…). Les employés ont ainsi
-            la possibilité de voter, donner leur opinions, échanger entre
-            eux/débattre sur un sujet donné, directement depuis leur ordinateur
-             professionnel.
-        </p>
-        <p>
-          XXX se veut être un véritable outil de consultation de toutes les
-          strates de l’entreprise, qui permette aux dirigeants d’avoir une
-          représentation la plus réelle possible des différents points de vue
-          dans l’organisation, pour faciliter les sources d’innovation et
-          augmenter l’engagement des salariés envers l’entreprise.
-        </p>
+        <div>
+        Pnyx is a Saas platform allowing a company’s executive management
+        to interact with it’s employees and to consult them on strategic
+        questions (employees representatives elections, strategy shift, cost
+          reduction, quality of life…). The employees have the possibility to
+          vote, voice their opinions, exchange and debate between them on a given
+          subject, directly from their computers.
+        </div>
+        <div>
+        Pnyx aspires to be a consultation tool at all levels of a company,
+        giving the opportunity to top executives to have a real representation
+        of the different points of view in their organisation. Additionally, it
+        will help them engage their employees, identify high-potential coworkers
+        and source better ideas.
+        </div>
+        <br/>
+        <div>
+        Let’s take an example: The R&D department of a big company is realizing
+        that the way they are organized doesn’t work that well anymore. It was
+        set up around 2003 and wasn’t really taking into account the shift that
+        internet created in the way business was done. So the head of department
+        decided to restructure the department.
+        </div>
+        <div>
+        So he creates a consultation on Pnyx, to consult all their R&D employees,
+        as well as a few other departments, to ask them how they would do it.
+        This way he can save time and money on consultants and quickly get clear
+        and pertinent ideas on how to do it. And doing so, he’ll also save some
+        time and trouble in restructuring, since the idea comes directly from the
+        employee. He removes the manager-employee confrontation.
+        </div>
       </React.Fragment>
     ],
     post_date: "2018-10-01T10:20:30Z",
     likes: 38,
     comments: {
-        number_of_comments: 3,
+        number_of_comments: 1,
         comments_list: [
           {
             id: 1,
             id_author: 0,
-            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
+            comment: "And we also plan to add a blockchain vote plugin at some point, allowing for better transparency on certain votes that need more security insurances."
           },
-          {
-            id: 2,
-            id_author: 1,
-            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
-          },
-          {
-            id: 3,
-            id_author: 0,
-            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
-          }
         ]
       }
   },
   {
     id: 1,
     id_author: 0,
-    title: "Nos clients",
+    title: "Our clients and users",
     content: [
       <React.Fragment>
-        <p>
-          Nous nous adressons particulièrement aux grandes entreprises, plus
-          particulièrement : trouver un critère plus précis ? Ce sont en effet
-          les premières concernées par le désengagement des individus au travail.
-        </p>
         <div>
-          Les utilisateurs de notre plateforme sont de deux types :
+          We have to main client segments at first:
         </div>
         <List bulleted>
-          <List.Item>Les directions des entreprises, qui ouvriront un sujet de
-            discussion sur un thème stratégique de l’entreprise</List.Item>
-          <List.Item>Les employés de l’entreprise, qui pourront débattre de ce
-            thème en ligne sur l’espace dédié et voter pour les mesures
-            auxquelles ils adhèrent.
+          <List.Item>Big companies (+5000 employees) that have trouble keeping
+          their employees engaged (we plan to start with industrial companies,
+            that can’t rely on the “flashy” component that fashion or tech companies
+            still have).</List.Item>
+          <List.Item>Medium companies (+300 employees) that have trouble keeping
+          their employees engaged of that want to develop a more inclusive company
+          culture.
           </List.Item>
         </List>
         <div>
-          Un accompagnement personnalisé pour un meilleur
-          changement des habitudes :
+          As for our users, they are of two types:
         </div>
-        <p>
-          Cette plateforme s’inscrit dans une dynamique plus globale
-          d’évolution du contexte organisationnel de l’entreprise vers un
-          fonctionnement plus ouvert et flexible. Nous avons conscience que
-          changer des habitudes est complexe et prend du temps, c’est pourquoi
-          nous proposerons également un service d’accompagnement à
-          l’entreprise, pour lui permettre d’intégrer au mieux la plateforme
-          dans ses habitudes de travail.
-        </p>
+        <List bulleted>
+          <List.Item>The executive management, which will be able to create new
+          discussions.</List.Item>
+          <List.Item>The employees, who will be able to debate about the theme
+          and then vote on it.
+          </List.Item>
+        </List>
       </React.Fragment>
     ],
     post_date: "2018-08-01T10:20:30Z",
     likes: 47,
     comments: {
-        number_of_comments: 3,
+        number_of_comments: 2,
         comments_list: [
           {
             id: 1,
-            id_author: 3,
-            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
+            id_author: 1,
+            comment: "The goal after that is to get all the others big companies, the unions and the companies cooperatives."
           },
           {
             id: 0,
             id_author: 1,
-            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
+            comment: "And in the long term, we plan to do toward public institutions with city halls, NGO, governments…"
           },
-          {
-            id: 1,
-            id_author: 4,
-            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
-          }
         ]
       }
   },
   {
     id: 2,
     id_author: 1,
-    title: "Offre d'accompagnement",
+    title: "Personalized counsel",
     content: [
       <React.Fragment>
         <p>
-          Il faut un super truc d'accompangment gna gna gna
-        </p>
-        <p>
+        This platform is only one piece of the more global dynamic that will
+        transform companies toward a more open and flexible way of functioning.
+        We are aware that changing habits is harduous and takes time. This is why
+        we will also offer a personalized counsel service, to help the company to
+        integrate the tool into their culture and their processes.
         </p>
       </React.Fragment>
     ],
     post_date: "2018-08-01T10:20:30Z",
     likes: 87,
     comments: {
-        number_of_comments: 3,
+        number_of_comments: 1,
         comments_list: [
           {
             id: 0,
-            id_author: 3,
-            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
+            id_author: 0,
+            comment: "We won’t be able to do it internally at first, so we’ll create a partnership with a strategy counselling agency to help us out."
           },
-          {
-            id: 1,
-            id_author: 1,
-            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
-          },
-          {
-            id: 0,
-            id_author: 4,
-            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
-          }
         ]
       }
   },

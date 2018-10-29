@@ -31,7 +31,7 @@ function ErrorMessage(props){
   return(
       <Message negative>
         <Message.Header>Error dans le login ou le mot de passe</Message.Header>
-        <p>Un indice: le login c'est "jury_dare_award" et le mdp c'est "votez_pour_nous"</p>
+        <p>Un indice: le login c'est "jury_dare_award" et le mdp c'est "dare_award"</p>
       </Message>
   );
 }
@@ -107,7 +107,7 @@ class LoginPage extends Component {
 
 
   handleFormAuthenticationSubmit(email, password) {
-    if(email === "jury_dare_award" && password === "vote") {
+    if(email === "jury_dare_award" && password === "dare_award") {
       const { cookies } = this.state.cookies;
       const d = new Date();
       d.setTime(d.getTime() + (constants.ONE_DAY));
