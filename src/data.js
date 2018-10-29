@@ -1,7 +1,10 @@
 import React from 'react'
 import {
-  List
+  List,
+  Image,
 } from 'semantic-ui-react'
+
+var images = require.context('./img', true);
 
 export const consultation_list_data =
 [
@@ -15,16 +18,16 @@ export const consultation_list_data =
     vote: true,
   },
   {
-    image: "./consultation_vignette/1_Election des délégués du personnel - 2018.jpeg",
-    header: "Implémentation",
-    description: "Deuxième partie du projet",
+    image: "./numbers.jpeg",
+    header: "How we plan to implement it",
+    description: "Business model, timeline and rough budget",
     link:'/consultation_detail?id=1',
     popularity: 9001,
     days_left: 2,
     vote: true,
   },
   {
-    image: "./consultation_vignette/1_Election des délégués du personnel - 2018.jpeg",
+    image: "./team.jpeg",
     header: "Equipe et originalité",
     description: "Conclusion du projet",
     link:'/consultation_detail?id=2',
@@ -125,7 +128,10 @@ export const consultation_detail_list_data = [
     consultation_pitch_sentence: "Discover our idea and the reasons behind it",
     consultation_description: [
       <React.Fragment>
+        <Image src={images("./microscope.png")} size='tiny' circular floated='left'/>
+        <br/>
         <p style={{fontSize: '25px'}}> <b> Observation </b> </p>
+        <br/>
         <p>
           <div>
             We made two main observations:
@@ -155,9 +161,12 @@ export const consultation_detail_list_data = [
           We firmly believe that this can and must change.
           </b>
         </p>
-        <br/><br/>
 
+
+        <Image src={images("./report.png")} size='tiny' circular floated='left'/>
+        <br/>
         <p style={{fontSize: '25px'}}> <b> Our conclusion </b> </p>
+        <br/>
           <div>
           For us, engagement is the key problem here. Whether in politics or in
           professional life, the current system is made so that the individual has
@@ -186,7 +195,11 @@ export const consultation_detail_list_data = [
           have to change to take into account the aspirations of their employees
            and citizens. And it is starting right now. All we need now, is a tool.
           </p>
+
+          <Image src={images("./target.png")} size='tiny' circular floated='left'/>
+          <br/>
           <p style={{fontSize: '25px'}}> <b> Solution in one sentence </b> </p>
+          <br/>
           <p>
             An online consultative and voting platform, available for company
             executive management, allowing them to consult their employees on a
@@ -217,8 +230,8 @@ export const consultation_detail_list_data = [
     detail_image: "./Pich-Idea-Bulb.jpeg",
   },
   {
-    consultation_name: "Implémentation",
-    consultation_pitch_sentence: "Deuxième partie du projet",
+    consultation_name: "How we plan to implement it",
+    consultation_pitch_sentence: "Business model, timeline and rough budget",
     consultation_description: [
       <React.Fragment>
         <p style={{fontSize: '25px'}}> Business Model </p>
@@ -231,7 +244,7 @@ export const consultation_detail_list_data = [
     consultation_organisator_id: 1,
     days_left: 1,
     popularity: 9001,
-    detail_image: "./profile_pic.jpg",
+    detail_image: "./numbers.jpeg",
   },
   {
     consultation_name: "Equipe et originalité",
@@ -247,7 +260,7 @@ export const consultation_detail_list_data = [
     consultation_organisator_id: 0,
     days_left: 3,
     popularity: 9002,
-    detail_image: "./profile_pic.jpg",
+    detail_image: "./team.jpeg",
   },
   {
     consultation_name: "Election des délégués du personnel - 2018",
@@ -398,6 +411,8 @@ export const consultation_id_0_opinions_details = [
         We are aware that changing habits is harduous and takes time. This is why
         we will also offer a personalized counsel service, to help the company to
         integrate the tool into their culture and their processes.
+
+        PARLER AUSSI DES PACKS ET AVANTAGES GRATUITS QU'ON VEUT METTRE EN PLACE
         </p>
       </React.Fragment>
     ],
