@@ -504,13 +504,10 @@ export const consultation_id_1_opinions_details = [
           <List.Item>Mensual subscription: 1000€</List.Item>
           <List.Item>“Installation Pack”: 10 000€</List.Item>
         </List>
+        <br/>
+        <p style={{fontSize: '16px'}}> Budget chart </p>
         <p>
-        [Insérer graphe]
-        </p>
-        <p>
-        In addition to the information in this chart, it’s worth mentioning
-        that we have a positive result in the third year and a low point in
-        cash flow of -60 000€ that need to be countered with investment.
+        <Image src={images("./budget.png")}  size='huge'/>
         </p>
       </React.Fragment>
     ],
