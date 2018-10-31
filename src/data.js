@@ -273,8 +273,16 @@ export const consultation_detail_list_data = [
       <React.Fragment>
         <p style={{fontSize: '25px'}}> Equipe et vidéo </p>
         <p>
-        Présenter nos trucs classes et la vidéo
+        [Image de présentation de l'équipe]
         </p>
+        <p>
+        [Vidéo finale de nous]
+        </p>
+        <iframe width="560" height="315"
+        src="https://www.youtube.com/embed/Jyk6zwHcfK0"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
       </React.Fragment>
     ],
     consultation_organisator_id: 0,
