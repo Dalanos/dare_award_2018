@@ -44,13 +44,13 @@ const getDaysSincePosting = ( currenDate, postingDate ) => {
 }
 
 const InfoBar = props => {
-  var image = props.dataLoaded ? props.info.user_list[props.info.consultation_organisator_id] : "./profile_pic.jpg";
+  var image = props.info.dataLoaded ? props.info.user_list[props.info.consultation_details.consultation_organisator_id].photo : "./profile_pic.jpg";
   return (
     <Container>
       <Grid>
         <Grid.Row stretched>
           <Grid.Column width={3}>
-            <Image src={images("./profile_pic.jpg")} size='tiny' circular/>
+            <Image src={images(image)} size='tiny' circular/>
           </Grid.Column>
           <Grid.Column width={10} textAlign='left'>
             <h3>{props.info.consultation_details.consultation_name}</h3>
@@ -111,7 +111,6 @@ const AuthorBar = props => {
 }
 
 class CommentFeed extends React.Component {
-
   render() {
     var render = [];
     if(this.props.state.dataLoaded) {
@@ -151,7 +150,6 @@ class CommentFeed extends React.Component {
       </Comment.Group>
     );
   }
-
 }
 
 class OpinionPanel extends React.Component {

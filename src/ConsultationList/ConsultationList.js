@@ -240,7 +240,7 @@ class ConsultationList extends React.Component {
               <Modal.Header style={{fontSize: '22px'}}>Foreword</Modal.Header>
               <Modal.Content style={{fontSize: '19px'}}>
                 <p>
-                  Hey there! <br/>
+                Hey there! <br/>
                 Welcome to our project for the Dare Award 2018 Challenge. <br/>
                 We have been developing this platform these last three weeks to make your experience
                 as interactive as possible. It is a early stage reprensentation of our solution.
@@ -252,7 +252,6 @@ class ConsultationList extends React.Component {
                 highlighted path, you should be all right.  <br/>
                 But if something goes wrong, you can join us at 06 56 84 05 77 or sami.yacoubi@hec.edu.<br/>
                 We’ll also add a regular (and boring) version of our presentation in an additional document.
-
                 </p>
               </Modal.Content>
               <Modal.Actions>

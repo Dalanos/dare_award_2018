@@ -234,11 +234,31 @@ export const consultation_detail_list_data = [
     consultation_pitch_sentence: "Business model, timeline and rough budget",
     consultation_description: [
       <React.Fragment>
+        <div>
+          In this consultation, we will talk more about several elements:
+        </div>
+        <List bulleted>
+          <List.Item>The business model</List.Item>
+          <List.Item>A rough budget</List.Item>
+          <List.Item>The timeline</List.Item>
+          <List.Item>And the oppotunities that the market is showing</List.Item>
+        </List>
+        <div>
+        And we will finally see the voting page at the end of the consultation.
+        </div>
+        <br/>
         <p style={{fontSize: '25px'}}> Business Model </p>
-        <p>
-          Détail du fonctionnement du business model
-          et indication de ce qu'il y a en opinions
-        </p>
+        <div>
+          In our opinion, the best way to monetize this service is to use two channels:
+        </div>
+        <List bulleted>
+          <List.Item>A subscription for the usage of the software (on the SaaS model)
+          </List.Item>
+          <List.Item>Standard fees for the counselling in the form of “packs”,
+          that provide all the necessary help to get set-up, and some additionnel
+          services if the company doesn’t have the internal resources to run it
+          themselves.</List.Item>
+        </List>
       </React.Fragment>
     ],
     consultation_organisator_id: 1,
@@ -436,70 +456,73 @@ export const consultation_id_1_opinions_number=3;
 export const consultation_id_1_opinions_details = [
   {
     id: 0,
-    id_author: 0,
-    title: "Budget",
+    id_author: 1,
+    title: "Timeline and Go to market",
     content: [
       <React.Fragment>
+        <p style={{fontSize: '25px'}}> Timeline  </p>
         <p>
-          Il faut un super truc de budget gna gna gna
+          [Integrer graphe]
         </p>
+        <br/>
+        <p style={{fontSize: '25px'}}> Go to market </p>
         <p>
+        It is still very early to tell, but we currently have two main options:
         </p>
+        <List bulleted>
+          <List.Item>A partnership with the NGO Rotary, to test the beta and find
+          influencal business leaders (Sami is a member since 2016).</List.Item>
+          <List.Item>Contact "Entreprise & Progrès" a think tank of influencal
+          leaders that want to change the way the current system works.</List.Item>
+        </List>
       </React.Fragment>
     ],
     post_date: "2018-10-01T10:20:30Z",
     likes: 21,
     comments: {
-        number_of_comments: 3,
+        number_of_comments: 1,
         comments_list: [
           {
             id: 1,
             id_author: 0,
-            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
-          },
-          {
-            id: 2,
-            id_author: 1,
-            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
-          },
-          {
-            id: 3,
-            id_author: 0,
-            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
+            comment: "Philippe Mondan, HEC advisor has contacts there, and will make introductions."
           }
         ]
       }
   },
   {
     id: 1,
-    id_author: 1,
-    title: "Timeline",
+    id_author: 0,
+    title: "Rough budget",
     content: [
       <React.Fragment>
         <p>
-          Un schéma via photo serait le plus adapté
+          To find a rough budget we need, in addition of the growth prediction
+          from the previous session, a pricing. It is very rough at this point:
+        </p>
+        <List bulleted>
+          <List.Item>Mensual subscription: 1000€</List.Item>
+          <List.Item>“Installation Pack”: 10 000€</List.Item>
+        </List>
+        <p>
+        [Insérer graphe]
+        </p>
+        <p>
+        In addition to the information in this chart, it’s worth mentioning
+        that we have a positive result in the third year and a low point in
+        cash flow of -60 000€ that need to be countered with investment.
         </p>
       </React.Fragment>
     ],
     post_date: "2018-08-01T10:20:30Z",
     likes: 32,
     comments: {
-        number_of_comments: 3,
+        number_of_comments: 1,
         comments_list: [
           {
             id: 1,
-            id_author: 3,
-            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
-          },
-          {
-            id: 0,
             id_author: 1,
-            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
-          },
-          {
-            id: 1,
-            id_author: 4,
-            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
+            comment: "In addition to the information in this chart, it’s worth mentioning that we have a positive result in the third year and a low point in cash flow of -60 000€ that need to be countered with investment."
           }
         ]
       }
@@ -520,24 +543,8 @@ export const consultation_id_1_opinions_details = [
     post_date: "2018-08-01T10:20:30Z",
     likes: 12,
     comments: {
-        number_of_comments: 3,
-        comments_list: [
-          {
-            id: 0,
-            id_author: 3,
-            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
-          },
-          {
-            id: 1,
-            id_author: 1,
-            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
-          },
-          {
-            id: 0,
-            id_author: 4,
-            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
-          }
-        ]
+        number_of_comments: 0,
+        comments_list: []
       }
   },
 ]
