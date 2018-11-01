@@ -213,7 +213,9 @@ const OpinionCard = (props) => {
             circular/>
 
           <Item.Content verticalAlign='middle'>
-            <Item.Header>
+            <Item.Header
+            as={Link}
+            to={'/opinion_detail?id_consultation=' + props.id_consultation + '&id_opinion=' + props.opinion_detail.id}>
               {shortened_title}
             </Item.Header>
             <Item.Meta>
@@ -241,7 +243,9 @@ const OpinionCard = (props) => {
             circular/>
 
           <Item.Content verticalAlign='middle'>
-            <Item.Header>
+            <Item.Header
+            as={Link}
+            to={'/opinion_detail?id_consultation=' + props.id_consultation + '&id_opinion=' + props.opinion_detail.id}>
               {shortened_title}
             </Item.Header>
             <Item.Meta>

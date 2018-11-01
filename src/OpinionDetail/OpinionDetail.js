@@ -164,8 +164,9 @@ class OpinionPanel extends React.Component {
   render() {
     return (
       <Container>
-        <Header as='h1' textAlign="left">{this.state.opinion.title || ""}</Header>
         <AuthorBar author={this.state.author} opinion_posting_date={this.state.opinion.post_date}/>
+        <Header as='h1' textAlign="left">{this.state.opinion.title || ""}</Header>
+
         <Divider/>
         {this.state.opinion.content}
       </Container>
