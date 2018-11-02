@@ -243,7 +243,7 @@ class ConsultationList extends React.Component {
                 Hey there! <br/>
                 Welcome to our project for the Dare Award 2018 Challenge. <br/>
                 We have been developing this platform these last three weeks to make your experience
-                as interactive as possible. It is a early stage reprensentation of our solution.
+                as interactive as possible. It is an early stage reprensentation of our solution.
                 We will be guiding you during the presentation, you’ll
                 just have to click on the highlighted elements!<br/><br/><br/>
 

@@ -128,7 +128,7 @@ class CommentFeed extends React.Component {
               </Comment.Metadata>
               <Comment.Text>{commentaire.comment}</Comment.Text>
               <Comment.Actions>
-                <Comment.Action>Reply</Comment.Action>
+                <Comment.Action>Reply (Deactivated)</Comment.Action>
               </Comment.Actions>
             </Comment.Content>
           </Comment>
@@ -145,7 +145,7 @@ class CommentFeed extends React.Component {
 
         <Form reply>
           <Form.TextArea />
-          <Button content='Add Reply' labelPosition='left' icon='edit' primary />
+          <Button content='Add Reply (Deactivated)' labelPosition='left' icon='edit' primary />
         </Form>
       </Comment.Group>
     );
@@ -210,7 +210,7 @@ class OpinionDetail extends React.Component {
       case constants.CONSULT_UNE_OPINION_DETAIL_DEUX_RETOUR:
         if(this.state.id_opinion === "2"){
           new_state=true;
-          new_state_parcours=constants.CONSULT_UNE_OPINION_DETAIL_TROIS_VALIDE;
+          new_state_parcours=constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR;
         }
         break;
         case constants.CONSULT_DEUX_OPINION:

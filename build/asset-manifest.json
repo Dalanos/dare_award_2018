@@ -1,8 +1,8 @@
 {
   "main.css": "static/css/main.c120f847.css",
   "main.css.map": "static/css/main.c120f847.css.map",
-  "main.js": "static/js/main.bb251bdd.js",
-  "main.js.map": "static/js/main.bb251bdd.js.map",
+  "main.js": "static/js/main.31a0ab5b.js",
+  "main.js.map": "static/js/main.31a0ab5b.js.map",
   "static/media/16_Optimisation de nos processus de production.jpeg": "static/media/16_Optimisation de nos processus de production.c6889bb0.jpeg",
   "static/media/173357713.jpg": "static/media/173357713.e66b317d.jpg",
   "static/media/1_Election des délégués du personnel - 2018.jpeg": "static/media/1_Election des délégués du personnel - 2018.169b5522.jpeg",
@@ -21,10 +21,13 @@
   "static/media/brand-icons.woff": "static/media/brand-icons.a046592b.woff",
   "static/media/brand-icons.woff2": "static/media/brand-icons.e8c322de.woff2",
   "static/media/budget.png": "static/media/budget.e8b3f9dd.png",
+  "static/media/coin.png": "static/media/coin.749f87b3.png",
   "static/media/column.png": "static/media/column.fbda3718.png",
   "static/media/daylight-environment-forest-459225.jpg": "static/media/daylight-environment-forest-459225.15a2aed1.jpg",
+  "static/media/equipe.png": "static/media/equipe.f043bdc0.png",
   "static/media/filler.jpeg": "static/media/filler.9a07c66a.jpeg",
   "static/media/flags.png": "static/media/flags.9c74e172.png",
+  "static/media/gotomarket.png": "static/media/gotomarket.bce557fc.png",
   "static/media/icons.eot": "static/media/icons.8e3c7f55.eot",
   "static/media/icons.svg": "static/media/icons.962a1bf3.svg",
   "static/media/icons.ttf": "static/media/icons.b87b9ba5.ttf",
@@ -33,6 +36,7 @@
   "static/media/idea.jpeg": "static/media/idea.34256422.jpeg",
   "static/media/idea.jpg": "static/media/idea.9f8fd417.jpg",
   "static/media/margot.jpg": "static/media/margot.4dfd27e6.jpg",
+  "static/media/melissa.jpg": "static/media/melissa.929fba29.jpg",
   "static/media/microscope.png": "static/media/microscope.7f0d14e5.png",
   "static/media/nature_sombre.jpg": "static/media/nature_sombre.a204def6.jpg",
   "static/media/numbers.jpeg": "static/media/numbers.806f5e20.jpeg",
@@ -49,5 +53,6 @@
   "static/media/target.png": "static/media/target.fc3a5278.png",
   "static/media/team.jpeg": "static/media/team.9fc7620f.jpeg",
   "static/media/team.jpg": "static/media/team.cdea04cb.jpg",
-  "static/media/test.jpg": "static/media/test.2a36fffe.jpg"
+  "static/media/test.jpg": "static/media/test.2a36fffe.jpg",
+  "static/media/timeline-icon.png": "static/media/timeline-icon.80885480.png"
 }

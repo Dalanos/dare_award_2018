@@ -111,10 +111,11 @@ const VoteView = props => {
 };
 
 const NavigationBar = props => {
-
+    console.log(props.id_consultation)
     var render = [];
     var parcours_jury = parseInt(props.cookies.get('parcours_jury'), 10);
-    if(parcours_jury < constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR){
+    if(parcours_jury < constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR ||
+      props.id_consultation === 3 || props.id_consultation === 4){
       render.push(
         <Menu.Item
           name='Vote'
@@ -598,7 +599,8 @@ class ConsultationDetail extends React.Component {
 
           <InfoBar info={this.state}/>
           {/* <Divider /> */}
-          <NavigationBar active={this.state.current_navigation} cookies={this.state.cookies.cookies} onClick={(e) => this.handleNavigationClick(e)}/>
+          <NavigationBar active={this.state.current_navigation} cookies={this.state.cookies.cookies}
+          id_consultation={this.state.id} onClick={(e) => this.handleNavigationClick(e)}/>
           {/* <Divider /> */}
           { this.state.current_navigation === "Description" ?
             <DescriptionView desc={this.state.consultation_details.consultation_description}/> : null }

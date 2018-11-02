@@ -123,11 +123,11 @@ export const authors_list = [
   {
     id: 2,
     first_name: "Karine",
-    last_name: "Gras [Force Ouvrière]",
+    last_name: "Gras [CFDT]",
     entity_name: "",
     email: "sami.yacoubi@hotmail.fr",
     password: "sami",
-    photo : "./profile_pic/sami.jpg",
+    photo : "./profile_pic/karine.jpeg",
   },
   {
     id: 3,
@@ -136,7 +136,7 @@ export const authors_list = [
     entity_name: "",
     email: "sami.yacoubi@hotmail.fr",
     password: "sami",
-    photo : "./profile_pic/sami.jpg",
+    photo : "./profile_pic/mathieu.jpeg",
   },
   {
     id: 4,
@@ -145,7 +145,7 @@ export const authors_list = [
     entity_name: "",
     email: "sami.yacoubi@hotmail.fr",
     password: "sami",
-    photo : "./profile_pic/sami.jpg",
+    photo : "./profile_pic/robin.jpeg",
   },
   {
     id: 5,
@@ -154,7 +154,7 @@ export const authors_list = [
     entity_name: "",
     email: "sami.yacoubi@hotmail.fr",
     password: "sami",
-    photo : "./profile_pic/sami.jpg",
+    photo : "./profile_pic/mathilde.jpeg",
   },
 ]
 
@@ -173,29 +173,28 @@ export const consultation_detail_list_data = [
             We made two main observations:
           </div>
           <List bulleted>
-            <List.Item>In our current society, the public institutions don’t really
-            involve the citizen. To get involved personally demands lot of time and
-            contacts. Our system of representation hasn’t really changed in a century
-             (vote for a house representant every 5 years or so) although our technology
+            <List.Item>In our current society, the <b> public institutions don’t really
+            involve the citizen.</b> To get involved personally demands lot of time and
+            contacts. Our system of representation <b>hasn’t really changed in a century</b>
+              (vote for a house representant every 5 years or so) although our technology
               allows us to be directly informed and implicated. All this combined can
               partially explain the French’s disinterest in politics. </List.Item>
+
             <List.Item>At the same time, traditional companies are in turmoil.
-             France is the european country with the lowest percentage of workers
-             happy about their jobs. Big companies have trouble engaging their
-             employees, and can’t keep the new recruits, especially the millenials.
-              The reason: a desengagement of the employees who don’t see their
-              impact in the company. New generations are in search of meaning and
-              feeling of belonging to a community, and to something that is greater
-              than just “selling products, making money”, something that big companies
-              can rarely provide. Furthermore, they have troubles keeping up their
-              level of innovation with start-ups, and can’t really attract the talents
-              necessary to do so.
+             France has the <b>lowest percentage of engaged workers</b>, big companies have trouble
+             engaging their employees, and can’t keep the new recruits,
+             especially the millenials <i>(Steelcase & Ipsos, 2016)</i>. <br/>
+             This affect their innovation capacity, and puts them in jeopardy.
             </List.Item>
           </List>
           <br/>
+          <div style={{
+            textAlign: "center",
+            fontSize: "18px"}}>
           <b>
-          We firmly believe that this can and must change.
+          We firmly believe that both these things can and must change.
           </b>
+          </div>
         </p>
 
 
@@ -206,31 +205,39 @@ export const consultation_detail_list_data = [
           <div>
           For us, engagement is the key problem here. Whether in politics or in
           professional life, the current system is made so that the individual has
-           little or no feeling of having an impact. This new generation of workers
-            is in search of meaning and impact in their life, and want to be actor of
-             change, not just spectator. And they’ll need tools to make it happen.
+          little or no feeling of having an impact, thus disengaging themselves.
+          This new generation of workers
+          is in search of meaning and impact in their life, and want to be actor of
+          change, not just spectator.
           </div>
+          <br/>
           <div>
-            We are confident that these issues could be solved through a more
-            consultative system. This is something that has been growing in the
-            last few years, and has been getting more and more traction.
+            We are confident that these issues could be solved through <b>a more
+            consultative system. </b>This is something that has been growing in the
+            last few years, and has been getting more and more traction <i>(Observatoire
+            de l'engagement, 2014)</i>. Of course,
+            it will take a long time for it to happen in politics, but
+            it can already be started in companies.
           </div>
+          <br/>
           <div>
-            Of course, it will take a long time for it to happen in politics
-            (although you can already see a few examples here and there), but
-            it can already be started in companies. A consultative system would
-             help the employees feeling valued and useful, therefore increasing
-             engagement, smart business decisions and public image. And this would
+             A consultative system would help the employees feeling valued and
+             useful, therefore providing several benefits for the company:
+             <br/>
+             <List bulleted>
+               <List.Item>Inscrease in employee engagement</List.Item>
+               <List.Item>Better idea generation</List.Item>
+               <List.Item>Better high-potential employees detection</List.Item>
+               <List.Item>And a better public image</List.Item>
+             </List>
+             <br/>
+             And this would
               also help for our first observation. If a citizen uses a consultative
               system in his workplace, where he goes everyday and is engaged, he
                will quickly ask himself why such a system isn’t implemented in
-               his public life.
+               his public life, and will ask that it is done.
           </div>
-          <p>
-          Whether they like it or not, companies and public institutions will
-          have to change to take into account the aspirations of their employees
-           and citizens. And it is starting right now. All we need now, is a tool.
-          </p>
+          <br/>
 
           <Image src={images("./target.png")} size='tiny' circular floated='left'/>
           <br/>
@@ -242,7 +249,7 @@ export const consultation_detail_list_data = [
             wide variety of topics going from strategic decisions, to day-to-day
             improvements.
           </p>
-          <p>
+          <p style={{color:'rgb(49, 202, 202)'}}>
             <b>
             For our application for the Dare Award Challenge, we choose to
             present our project with this current form, being a first idea of
@@ -270,6 +277,7 @@ export const consultation_detail_list_data = [
     consultation_pitch_sentence: "Business model, timeline and rough budget",
     consultation_description: [
       <React.Fragment>
+      <br/>
         <div>
           In this consultation, we will talk more about several elements:
         </div>
@@ -296,8 +304,12 @@ export const consultation_detail_list_data = [
           <List.Item>Standard fees for the counselling in the form of “packs”,
           that provide all the necessary help to get set-up, and some additionnel
           services if the company doesn’t have the internal resources to run it
-          themselves.</List.Item>
+          itself.</List.Item>
         </List>
+        <p style={{color:'rgb(49, 202, 202)'}}> <b>
+          You know what to do now :) Go have a look in the Opinions
+          </b>
+        </p>
       </React.Fragment>
     ],
     consultation_organisator_id: 1,
@@ -310,18 +322,33 @@ export const consultation_detail_list_data = [
     consultation_pitch_sentence: "Conclusion du projet",
     consultation_description: [
       <React.Fragment>
+        <br/>
+        <p style={{fontSize: '25px'}}> <b> Our team </b> </p>
         <br/><br/>
         <p>
         <Image src={images("./equipe.png")}  size='huge'/>
         </p>
-        <p>
-        [Vidéo finale de nous]
-        </p>
+        <br/>
+        <p style={{fontSize: '25px'}}> <b> And of course, you'll be able to post videos</b> </p>
         <iframe width="560" height="315"
         src="https://www.youtube.com/embed/Jyk6zwHcfK0"
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
+        <p style={{color:'rgb(49, 202, 202)'}}> <b>
+          Thanks again for your attention! The tour is now over, but you can go discover
+          two examples on the Consultation List page. And remember:
+          <br/><br/>
+          </b>
+          <div style={{
+            textAlign: "center",
+            fontSize: "20px"}}>
+          <b>
+          To make Pnyx a reality we will have to dare changing the way companies work,
+          one at a time.
+          </b>
+          </div>
+        </p>
       </React.Fragment>
     ],
     consultation_organisator_id: 0,
@@ -394,7 +421,7 @@ export const consultation_detail_list_data = [
 
       </React.Fragment>
     ],
-    consultation_organisator_id: 3,
+    consultation_organisator_id: 5,
     days_left: 18,
     popularity: 150,
     detail_image: "./consultation_vignette/1_Election des délégués du personnel - 2018.jpeg",
@@ -459,14 +486,16 @@ export const consultation_id_0_opinions_details = [
     title: "Solution",
     content: [
       <React.Fragment>
+      <br/>
         <div>
         Pnyx is a Saas platform allowing a company’s executive management
-        to interact with it’s employees and to consult them on strategic
+        to interact with its employees and to consult them on strategic
         questions (employees representatives elections, strategy shift, cost
           reduction, quality of life…). The employees have the possibility to
           vote, voice their opinions, exchange and debate between them on a given
           subject, directly from their computers.
         </div>
+        <br/>
         <div>
         Pnyx aspires to be a consultation tool at all levels of a company,
         giving the opportunity to top executives to have a real representation
@@ -476,20 +505,33 @@ export const consultation_id_0_opinions_details = [
         </div>
         <br/>
         <div>
-        Let’s take an example: The R&D department of a big company is realizing
-        that the way they are organized doesn’t work that well anymore. It was
-        set up around 2003 and wasn’t really taking into account the shift that
-        internet created in the way business was done. So the head of department
-        decided to restructure the department.
+        The mains features for the <b>management</b> are:
+        <List bulleted>
+          <List.Item>Create consultations</List.Item>
+          <List.Item>Create votes</List.Item>
+          <List.Item>Post news articles about a consultation</List.Item>
+          <List.Item>Ineract with employees</List.Item>
+          <List.Item>Analyze engagement and interaction through a dashboard</List.Item>
+        </List>
         </div>
+        <br/>
         <div>
-        So he creates a consultation on Pnyx, to consult all their R&D employees,
-        as well as a few other departments, to ask them how they would do it.
-        This way he can save time and money on consultants and quickly get clear
-        and pertinent ideas on how to do it. And doing so, he’ll also save some
-        time and trouble in restructuring, since the idea comes directly from the
-        employee. He removes the manager-employee confrontation.
+        And the mains features for the <b>employees</b> are:
+        <List bulleted>
+          <List.Item>Create consultations (depending on the company policy)</List.Item>
+          <List.Item>See all opinions about a consultation</List.Item>
+          <List.Item>React on a consultation</List.Item>
+          <List.Item>Vote on certain subjects</List.Item>
+          <List.Item>Upvote ideas that he shares</List.Item>
+          <List.Item>Ineract with employees and management</List.Item>
+          <List.Item>Analyze engagement and interaction through a dashboard</List.Item>
+        </List>
         </div>
+        <br/>
+        <p style={{color:'rgb(49, 202, 202)'}}>
+          You will find two examples at the end of the tour to get a better idea :).
+          Go back to Opinions with the button on top
+        </p>
       </React.Fragment>
     ],
     post_date: "2018-10-01T10:20:30Z",
@@ -511,9 +553,13 @@ export const consultation_id_0_opinions_details = [
     title: "Our clients and users",
     content: [
       <React.Fragment>
-        <div>
-          We have to main client segments at first:
+      <Image src={images("./client.png")} size='tiny' circular floated='left'/>
+      <br/>
+      <br/>
+        <div> <b>
+          We have two main client segments at first: </b>
         </div>
+        <br/><br/>
         <List bulleted>
           <List.Item>Big companies (+5000 employees) that have trouble keeping
           their employees engaged (we plan to start with industrial companies,
@@ -524,14 +570,18 @@ export const consultation_id_0_opinions_details = [
           culture.
           </List.Item>
         </List>
-        <div>
-          As for our users, they are of two types:
-        </div>
+        <Image src={images("./user.png")} size='tiny' circular floated='left'/>
+        <br/>
+        <br/>
+          <div> <b>
+            As for our users, they are of two types: </b>
+          </div>
+          <br/><br/>
         <List bulleted>
           <List.Item>The executive management, which will be able to create new
           discussions.</List.Item>
-          <List.Item>The employees, who will be able to debate about the theme
-          and then vote on it.
+          <List.Item>The employees, who will be able to debate between them and
+          with the management about the subject and then potentially vote on it.
           </List.Item>
         </List>
       </React.Fragment>
@@ -544,7 +594,8 @@ export const consultation_id_0_opinions_details = [
           {
             id: 1,
             id_author: 1,
-            comment: "The goal after that is to get all the others big companies, the unions and the companies cooperatives."
+            comment: "The goal after that is to get all the other big companies, the unions and the companies cooperatives. " +
+            "All combined, it represents more than 7000 potentials clients, just in France"
           },
           {
             id: 0,
@@ -560,14 +611,31 @@ export const consultation_id_0_opinions_details = [
     title: "Personalized counsel",
     content: [
       <React.Fragment>
+      <br/>
         <p>
         This platform is only one piece of the more global dynamic that will
         transform companies toward a more open and flexible way of functioning.
         We are aware that changing habits is harduous and takes time. This is why
         we will also offer a personalized counsel service, to help the company to
         integrate the tool into their culture and their processes.
-
-        PARLER AUSSI DES PACKS ET AVANTAGES GRATUITS QU'ON VEUT METTRE EN PLACE
+        <br/><br/>
+        It is still early to have a definite idea, but we plan to offer "packs"
+        of counselling, for different purposes:
+        <List bulleted>
+          <List.Item>Installation pack (mandatory)</List.Item>
+          <List.Item>Strategy enforcement pack</List.Item>
+          <List.Item>And many others</List.Item>
+        </List>
+        <br/>
+        In addition, we plan to offer free counsel (or at least included in the subscription fee)
+        every trimester, to ensure that our tool is used in a correct way and help
+        out if it is not the case.
+        </p>
+        <p style={{color:'rgb(49, 202, 202)'}}> <b>
+          Congratulations, you've reached the end of the first consultation! You can now check
+          out the second, which talks about business model and budget. To access it, simply
+          click on the "Consultation List" button on the navigation bar at the top.
+          </b>
         </p>
       </React.Fragment>
     ],
@@ -597,7 +665,7 @@ export const consultation_id_1_opinions_details = [
       <React.Fragment>
         <Image src={images("./timeline-icon.png")} size='tiny' circular floated='left'/>
         <br/>
-        <p style={{fontSize: '25px'}}> Timeline  </p>
+        <p style={{fontSize: '25px'}}><b> Timeline </b> </p>
         <p>
         <br/>
         <Image src={images("./timeline.png")}  size='huge' centered/>
@@ -605,7 +673,7 @@ export const consultation_id_1_opinions_details = [
 
         <Image src={images("./gotomarket.png")} size='tiny' circular floated='left'/>
         <br/>
-        <p style={{fontSize: '25px'}}> Go to market </p>
+        <p style={{fontSize: '25px'}}><b> Go to market </b></p>
         <p>
         <br/>
         It is still very early to tell, but we currently have two main options:
@@ -626,7 +694,7 @@ export const consultation_id_1_opinions_details = [
           {
             id: 1,
             id_author: 0,
-            comment: "Philippe Mondan, HEC advisor has contacts there, and will make introductions."
+            comment: "Philippe Mondan, HEC advisor and past CEO of 'Fnac' is following the project. He has contacts there, and will make introductions."
           }
         ]
       }
@@ -637,12 +705,14 @@ export const consultation_id_1_opinions_details = [
     title: "Rough budget",
     content: [
       <React.Fragment>
+      <br/>
         <p>
           To find a rough budget we need, in addition of the growth prediction
-          from the previous session, a pricing. It is very rough at this point:
+          from the previous session, a pricing. It is very rough at this point,
+          and inspired by similar models of start-ups:
         </p>
         <List bulleted>
-          <List.Item>Mensual subscription: 1000€</List.Item>
+          <List.Item>Mensual subscription: 1 000€</List.Item>
           <List.Item>“Installation Pack”: 10 000€</List.Item>
         </List>
         <br/>
@@ -668,13 +738,32 @@ export const consultation_id_1_opinions_details = [
   {
     id: 2,
     id_author: 0,
-    title: "Tendances, challenges et opportunités marché",
+    title: "Market opportunities",
     content: [
       <React.Fragment>
+      <br/>
         <p>
-          Il faut un super truc de marché gna gna gna
+          We are observing a change that is coming over the way big companies
+          are doing management. The HR start-ups are at an all-time high and the
+          question of satisfaction at the workplace is a key topic in every event
+          oriented toward innovation or HR.
         </p>
         <p>
+        And at the same time, a consultative system is still a far fetched idea
+        for most people. So the competition on this market is not yet existing
+        (a few companies are doing similar things, but nothing so evolved).
+        </p>
+        <p>
+        So we will benefit from the evangelizing that all others start-ups are
+        doing about well-being at work and engagement, while going further than
+        what is offered now, and thus carving our own market, in which we will
+        have at least several months of advance.
+        </p>
+        <br/>
+        <p style={{color:'rgb(49, 202, 202)'}}> <b>
+          You finished the Opinions of this consultation. Time to check out the
+          voting interface before discovering our team.
+          </b>
         </p>
       </React.Fragment>
     ],
@@ -695,7 +784,7 @@ export const consultation_id_3_opinions_details = [
   {
     id: 0,
     id_author: 2,
-    title: "FO: Une vidéo vaut mieux qu'un long discours",
+    title: "CFDT: Une vidéo vaut mieux qu'un long discours",
     content: [
       <React.Fragment>
         <iframe width="560" height="315"
@@ -758,78 +847,49 @@ export const consultation_id_3_opinions_details = [
   },
 ]
 
-export const consultation_id_4_opinions_number=2;
+export const consultation_id_4_opinions_number=1;
 export const consultation_id_4_opinions_details = [
   {
     id: 0,
-    id_author: 0,
-    title: "Avis 1",
+    id_author: 4,
+    title: "L'importance d'une gouvernance de l'IA",
     content: [
       <React.Fragment>
+      <br/>
         <p>
-          Il faut un super truc de budget gna gna gna
+          Bonjour à tous <br/>
+          Je trouve cette initiative excellente et indispensable. Pour moi un des
+          points majeurs de cette restructuration doit être la création d'une
+          entitée dédiée à l'IA, et à sa gouvernance au sein de nos différents projets.
+          <br/>
+          Aujourd'hui il y a a ma connaissance 16 projets engagés qui comportent
+          une composante d'IA. C'est une très bonne chose, mais en y regardant de plus
+          près, on observe que chaque équipe utilise ses outils propres, ses
+          méthodologies et ses bonnes pratiques. Cela rend les projets impossible
+          à fusionner ou à rapprocher dans le futur et fait perdre beaucoup de
+          ressources humaines à développer des outils, alors qu'une entitée dédiée
+          pourrait mettre des outils disponibles à tous, sous forme de toolbox avec
+          du conseil en cas de nécessité.
         </p>
         <p>
+        J'espère que cette idée sera mise en place rapidement!<br/>
+        Bonne journée et encore bravo pour la démarche <br/>
+        Robin
         </p>
       </React.Fragment>
     ],
     post_date: "2018-10-01T10:20:30Z",
     likes: 21,
     comments: {
-        number_of_comments: 3,
+        number_of_comments: 1,
         comments_list: [
           {
             id: 1,
-            id_author: 0,
-            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
-          },
-          {
-            id: 2,
-            id_author: 1,
-            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
-          },
-          {
-            id: 3,
-            id_author: 0,
-            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
+            id_author: 3,
+            comment: "Salut Robin, c'est en effet une excellente idée que nous avions commencé à envisager. J'ai entendu par Nathalie que tu étais très impliqué dans tous les projets d'IA" +
+            ". Je te propose donc de rejoindre le groupe de réflexion qui va être crée sur le sujet, pour participer aux discussions! Bonne journée"
           }
         ]
       }
-  },
-  {
-    id: 0,
-    id_author: 0,
-    title: "Avis 2",
-    content: [
-      <React.Fragment>
-        <p>
-          Il faut un super truc de budget gna gna gna
-        </p>
-        <p>
-        </p>
-      </React.Fragment>
-    ],
-    post_date: "2018-10-01T10:20:30Z",
-    likes: 21,
-    comments: {
-        number_of_comments: 3,
-        comments_list: [
-          {
-            id: 1,
-            id_author: 0,
-            comment: "Carrément. Je trouve que l'on retrouve de plus en plus ça dans la boite, et ça risque de nous jouer des tours"
-          },
-          {
-            id: 2,
-            id_author: 1,
-            comment: "Je suis pas d'accord avec toi. Je te conseille d'aller voir le post de Clément à ce sujet"
-          },
-          {
-            id: 3,
-            id_author: 0,
-            comment: "Il me semble néanmoins que c'est une position fortement partagée, notamment au sein de la DSI..."
-          }
-        ]
-      }
-  },
+  }
 ]
