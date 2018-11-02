@@ -21,7 +21,7 @@ class TopPanel extends React.Component {
         // ./consultation_detail/4_Renouvellement du prestataire du restaurant dentreprise.jpg
         // /img/rsz_brainstorming_sombre.jpg
         backgroundSize: "cover",
-        backgroundPosition: "top center",
+        backgroundPosition: "center center",
       }
     }
 

@@ -9,6 +9,7 @@ import {
   Button,
   Card,
   Form,
+  Modal,
 } from 'semantic-ui-react'
 import {
   Link
@@ -60,54 +61,152 @@ const DescriptionView = props => {
   )
 };
 
-const VoteView = props => {
-
-  if(parseInt(props.cookies.get('parcours_jury'), 10) === constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR){
-    const d = new Date();
-    d.setTime(d.getTime() + (constants.ONE_DAY));
-    props.cookies.set('parcours_jury', constants.CONSULT_DEUX_VOTE_VALIDE ,{expires : d})
-  }
-  var question;
-  switch (props.id_consultation) {
-    case 0:
-        question="So, now that you've seen our project, do you believe in it?";
-      break;
-    case 1:
-        question="So, with all that said, do you plan to vote for us?";
-      break;
-    case 2:
-        question='Best team ever, right?';
-      break;
-    case 3:
-        question='[Find question]';
-      break;
-    case 4:
-        question='[Find question]';
-      break;
-    default:
-      question="This is a question to ask to the coworkers";
-
+class VoteView extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      cookies: props.cookies,
+      id_consultation: props.id_consultation,
+      modal_open: false,
+      image_modal: "./user.png",
+      text_modal: "",
+    }
   }
 
-  return (
-    <Container style={{textAlign: 'center'}}>
-      <br/>
-      <br/>
-      <h2>
-        {question}
-      </h2>
-      <br/><br/>
-      <Button.Group fluid>
-        <Button>Yes</Button>
-        <Button.Or />
-        <Button>No</Button>
-        <Button.Or />
-        <Button>No opinion</Button>
-      </Button.Group>
-      <br/><br/><br/><br/>
-      <Button positive size='huge'>Vote!</Button>
-    </Container>
-  )
+  show = () => {
+    if(this.state.text_modal != "") {
+      this.setState({ modal_open: true });
+    }
+  }
+
+  close = () => {
+    this.setState({ modal_open: false });
+  }
+
+  option_choice (event, choice) {
+    var text="";
+    var image="user.png";
+    if(this.state.id_consultation === 1) {
+      switch (choice) {
+        case "Yes":
+          text="Awesome! But before taking a final decision, go see our team in the last consultation!"
+          image="./thankyou.jpg"
+          break;
+        case "No":
+          text="You can't take a decision before seeing our awesome team!"
+          image="./wht.jpeg"
+          break;
+        case "No opinion":
+          text="Well, that's about to change when you see our team!"
+          image="./neutral.jpg"
+          break;
+        default:
+      }
+    }
+    if(this.state.id_consultation === 2) {
+      switch (choice) {
+        case "Yes":
+          text="Thanks! Hope to see you on the 15th of November!"
+          image="./bestteam.jpg"
+          break;
+        case "No":
+          text="Ok, these guys are better, but we're not far behind!"
+          image="./powerrangers.jpg"
+          break;
+        case "No opinion":
+          text="Awww, that's tough...You need more convincing? Ok, got check out our examples!"
+          image="./neutral.jpg"
+          break;
+        default:
+      }
+    }
+    this.setState({
+      text_modal: text,
+      image_modal: image});
+  }
+
+  render() {
+    if(parseInt(this.state.cookies.get('parcours_jury'), 10) === constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR){
+      const d = new Date();
+      d.setTime(d.getTime() + (constants.ONE_DAY));
+      this.state.cookies.set('parcours_jury', constants.CONSULT_DEUX_VOTE_VALIDE ,{expires : d})
+    }
+    var question;
+    switch (this.state.id_consultation) {
+      case 0:
+          question="So, now that you've seen our project, do you believe in it?";
+        break;
+      case 1:
+          question="So, with all that said, do you plan to vote for us?";
+        break;
+      case 2:
+          question='Best team ever, right?';
+        break;
+      case 3:
+          question='[Find question]';
+        break;
+      case 4:
+          question='[Find question]';
+        break;
+      default:
+        question="This is a question to ask to the coworkers";
+    }
+
+    return (
+      <Container style={{textAlign: 'center'}}>
+        <br/>
+        <br/>
+        <h2>
+          {question}
+        </h2>
+        <br/><br/>
+        <Button.Group fluid>
+          <Button onClick={(event) => this.option_choice(event, "Yes")} >Yes</Button>
+          <Button.Or />
+          <Button onClick={(event) => this.option_choice(event, "No")} >No</Button>
+          <Button.Or />
+          <Button onClick={(event) => this.option_choice(event, "No opinion")} >No opinion</Button>
+        </Button.Group>
+        <br/><br/><br/><br/>
+        <Button positive size='huge' onClick={this.show}>Vote!</Button>
+
+
+        <Modal
+          open={this.state.modal_open}
+          closeOnEscape={true}
+          closeOnDimmerClick={true}
+          dimmer="blurring"
+          size="large"
+          onClose={this.close}
+          style={{
+            height: '50%'
+          }}
+        >
+          <Modal.Content style={{fontSize: '19px'}}>
+            <p>
+              <Image src={images(this.state.image_modal)}  size='big' centered/>
+              <br/>
+              <p style={{color:'rgb(49, 202, 202)', textAlign: 'center'}}> <b>
+                {this.state.text_modal}
+                </b>
+              </p>
+
+            </p>
+          </Modal.Content>
+
+          <Modal.Actions>
+            <Button
+              onClick={this.close}
+              positive
+              labelPosition='right'
+              icon='checkmark'
+              content="Let's go!"
+            />
+          </Modal.Actions>
+        </Modal>
+      </Container>
+    )
+  }
 };
 
 const NavigationBar = props => {
@@ -115,7 +214,7 @@ const NavigationBar = props => {
     var render = [];
     var parcours_jury = parseInt(props.cookies.get('parcours_jury'), 10);
     if(parcours_jury < constants.CONSULT_DEUX_OPINION_DETAIL_TROIS_RETOUR ||
-      props.id_consultation === 3 || props.id_consultation === 4){
+      props.id_consultation === 3 || props.id_consultation === 4 || props.id_consultation === 0){
       render.push(
         <Menu.Item
           name='Vote'
@@ -200,7 +299,7 @@ const Reactions = props => {
 
 const OpinionCard = (props) => {
   if(props.author_detail) {
-    const shortened_title = props.opinion_detail.title.substring(0, 45);
+    const shortened_title = props.opinion_detail.title.substring(0, 50);
     const shortened_content = "";
 
     if(props.clickable){

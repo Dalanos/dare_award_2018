@@ -113,12 +113,12 @@ export const authors_list = [
   },
   {
     id: 1,
-    first_name: "Margot",
-    last_name: "Boulet-Maurel",
+    first_name: "Mélissa",
+    last_name: "Benali-Richard",
     entity_name: "",
     email: "sami.yacoubi@hotmail.fr",
     password: "sami",
-    photo : "./profile_pic/margot.jpg",
+    photo : "./profile_pic/melissa.jpg",
   },
   {
     id: 2,
@@ -330,8 +330,8 @@ export const consultation_detail_list_data = [
         </p>
         <br/>
         <p style={{fontSize: '25px'}}> <b> And of course, you'll be able to post videos</b> </p>
-        <iframe width="560" height="315"
-        src="https://www.youtube.com/embed/Jyk6zwHcfK0"
+        <iframe width="853" height="480"
+        src="https://www.youtube.com/embed/OadyF_JhKJ8"
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
@@ -354,7 +354,7 @@ export const consultation_detail_list_data = [
     consultation_organisator_id: 0,
     days_left: 3,
     popularity: 9002,
-    detail_image: "./team.jpeg",
+    detail_image: "./team_large.png",
   },
   {
     consultation_name: "Election des délégués du personnel - 2018",
@@ -424,7 +424,7 @@ export const consultation_detail_list_data = [
     consultation_organisator_id: 5,
     days_left: 18,
     popularity: 150,
-    detail_image: "./consultation_vignette/1_Election des délégués du personnel - 2018.jpeg",
+    detail_image: "./meeting.jpeg",
   },
   {
     consultation_name: "Restructuration fonctionnelle de la direction R&D",
@@ -474,7 +474,7 @@ export const consultation_detail_list_data = [
     consultation_organisator_id: 3,
     days_left: 30,
     popularity: 68,
-    detail_image: "./consultation_vignette/3_Restructuration fonctionnelle de la direction R&D.jpeg",
+    detail_image: "./restruct.png",
   },
 ]
 
@@ -787,7 +787,7 @@ export const consultation_id_3_opinions_details = [
     title: "CFDT: Une vidéo vaut mieux qu'un long discours",
     content: [
       <React.Fragment>
-        <iframe width="560" height="315"
+        <iframe width="853" height="480"
         src="https://www.youtube.com/embed/U2LAqF2azFU"
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
