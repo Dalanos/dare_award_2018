@@ -285,7 +285,7 @@ export const consultation_detail_list_data = [
           <List.Item>The business model</List.Item>
           <List.Item>A rough budget</List.Item>
           <List.Item>The timeline</List.Item>
-          <List.Item>And the oppotunities that the market is showing</List.Item>
+          <List.Item>And the opportunities that the market is showing</List.Item>
         </List>
         <div>
         And we will finally see the voting page at the end of the consultation.
@@ -299,7 +299,7 @@ export const consultation_detail_list_data = [
           In our opinion, the best way to monetize this service is to use two channels:
         </div>
         <List bulleted>
-          <List.Item>A subscription for the usage of the software (on the SaaS model)
+          <List.Item>A subscription for the usage of the software (on the SaaS model).
           </List.Item>
           <List.Item>Standard fees for the counselling in the form of “packs”,
           that provide all the necessary help to get set-up, and some additionnel
@@ -510,7 +510,7 @@ export const consultation_id_0_opinions_details = [
           <List.Item>Create consultations</List.Item>
           <List.Item>Create votes</List.Item>
           <List.Item>Post news articles about a consultation</List.Item>
-          <List.Item>Ineract with employees</List.Item>
+          <List.Item>Interact with employees</List.Item>
           <List.Item>Analyze engagement and interaction through a dashboard</List.Item>
         </List>
         </div>
@@ -523,8 +523,7 @@ export const consultation_id_0_opinions_details = [
           <List.Item>React on a consultation</List.Item>
           <List.Item>Vote on certain subjects</List.Item>
           <List.Item>Upvote ideas that he shares</List.Item>
-          <List.Item>Ineract with employees and management</List.Item>
-          <List.Item>Analyze engagement and interaction through a dashboard</List.Item>
+          <List.Item>Interact with employees and management</List.Item>
         </List>
         </div>
         <br/>
