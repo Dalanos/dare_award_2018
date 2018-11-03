@@ -225,8 +225,8 @@ export const consultation_detail_list_data = [
              useful, therefore providing several benefits for the company:
              <br/>
              <List bulleted>
-               <List.Item>Inscrease in employee engagement</List.Item>
-               <List.Item>Better idea generation</List.Item>
+               <List.Item>Increase in employee engagement</List.Item>
+               <List.Item>Better idea-generation</List.Item>
                <List.Item>Better high-potential employees detection</List.Item>
                <List.Item>And a better public image</List.Item>
              </List>
@@ -378,8 +378,8 @@ export const consultation_detail_list_data = [
         Il est envisagé	qu'avant le premier tour, qui aura lieu entre le 15/11/2018 et
         le 17/11/2018, une session de débat ait lieu sur cette plateforme. Tous les
         candidats présentés	par	les	organisations	syndicales sont invités à détailler
-        leur programme et les empoyés sont invités à échanger directement avec eux au
-        travers de la palteforme.
+        leur programme et les employés sont invités à échanger directement avec eux au
+        travers de la plateforme.
         </p>
         <p>
         Conformément	aux	articles	L2314-3	et	L2324-4	du	Code	du	travail,
@@ -750,7 +750,7 @@ export const consultation_id_1_opinions_details = [
         <p>
         And at the same time, a consultative system is still a far fetched idea
         for most people. So the competition on this market is not yet existing
-        (a few companies are doing similar things, but nothing so evolved).
+        (a few companies are doing similar things, but nothing that evolved).
         </p>
         <p>
         So we will benefit from the evangelizing that all others start-ups are

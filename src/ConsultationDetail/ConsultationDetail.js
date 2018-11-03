@@ -336,7 +336,7 @@ const OpinionCard = (props) => {
       );
     } else {
       return (
-        <Item className="encadrer_bloc" style={props.highlighted? constants.style : {opacity: '0.5'}}>
+        <Item className="encadrer_bloc" style={props.highlighted? constants.style : {opacity: '0.3'}}>
           <Item.Image
             size='tiny'
             src={images(props.author_detail.photo)}
@@ -396,7 +396,6 @@ class OpinionListAsCard extends React.Component  {
               case constants.CONSULT_DEUX_OPINION :
               case constants.CONSULT_UNE_OPINION :
               {
-                // C'EST LA Qu(EST LE BUG) - TIENT PAS COMPTE DU NUMERO DE CONSULT
                 if(i === 0) {
                   render.push(
                     <OpinionCard
