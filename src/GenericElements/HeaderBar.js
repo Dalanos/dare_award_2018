@@ -51,6 +51,9 @@ class HeaderBar extends React.Component {
             </Menu.Item>
             {parseInt(this.state.cookies.get('parcours_jury'), 10) >= constants.CONSULT_UNE_OPINION_DETAIL_TROIS_RETOUR ?
               retour_liste_sujet : retour_desactivé}
+            <Menu.Item position="right" style={{color :'#31caca'}}>
+                <b> Demo step: {this.state.cookies.get('parcours_jury')}/21 </b>
+            </Menu.Item>
             <Menu.Item position="right" className="remove_padding_profile_pic">
               <Image size='mini' src={images("./profile_pic.jpg")}  circular />
             </Menu.Item>
